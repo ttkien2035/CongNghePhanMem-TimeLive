@@ -4,6 +4,9 @@
     Author     : ASUS
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Model.*"%>
+<%@page import="DAO.*"%>
 <%@page import="Hibernate.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -142,74 +145,32 @@
                 <div class="mb-3 container">
                     <div class="card todo-block container">
                         <div class="card-header">
-                            <h4 class="card-title">Todo List</h4>
+                            <h4 class="card-title">Todo List <button class="btn" id="task-todo-refresh" ><i class="fa fa-repeat"></i></button></h4>
                         </div>
                         <div class="card-body">
                             <!-- the events -->
                             <div id="external-events">
-                                <form class="task-group mb-1" style="background-color:#aaaaaa;">
+                                <%
+                                List<Todo> listofTodos = TodoDAO.getAllTodos(1);
+                                for (int i=0;i<listofTodos.size();i++)
+                                {
+                                %>
+                                <form class="task-group mb-1" style="background-color:<%= listofTodos.get(i).getTag().getColor()  %>;">
+                                    <input type="hidden" id="task-todo-id" value="<%= listofTodos.get(i).getTodoid()  %>">
                                     <div class="checkbox middle">
                                         <label >
-                                            <input type="checkbox" class="check">
+                                            <input type="checkbox" id="task-todo-check" class="check" >
                                         </label>
                                     </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
+                                    <div class="external-event middle" id="task-todo-des"><%= listofTodos.get(i).getDescript() %></div>
+                                    <div><span class="badge badge-secondary middle" id="task-todo-prio"><%= listofTodos.get(i).getPrio() %></span></div>
+                                    <button class="btn btn-hidden-bgr middle" id="task-todo-edit"><i class="fa fa-pencil-square-o" ></i></button>
+                                    <button class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></i></button>
                                 </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
+                                <% } %>
                             </div>
                             <div class="add-todo-task">
-                                <button type="button" class="btn btn-add-todo-task" data-toggle="modal" data-target="#addtodotask">
+                                <button type="button" class="btn btn-add-todo-task" id="btn-add-todo-task" data-toggle="modal" data-target="#addtodotask">
                                     Add New  <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -227,60 +188,23 @@
                         </div>
                         <div class="card-body ">
                             <div id="external-category-events" class="category-list-view">
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
+                                <%
+                                    List<Tag> listofTags = TodoDAO.getAllTags(1);
+                                    for(int i=0;i<listofTags.size();i++)
+                                    {
+                                %>
+                                
+                                <div class="category-group" style="background-color: <%= listofTags.get(i).getColor() %>">
+                                    <input type="hidden" id="tag-id" value="<%= listofTags.get(i).getTagid() %>">
+                                    <div class="external-category-event" id="tag-des"><%= listofTags.get(i).getTag() %></div>
+                                    <button class="btn btn-hidden-bgr middle" id="tag-edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button class="btn btn-hidden-bgr middle" id="tag-delete"><i class="fa fa-trash" ></i></i></button>
                                 </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                <div class="category-group">
-                                    <div class="external-category-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
+                                <% } %>
                             </div>
                         </div>
                         <div class="add-todo-category">
-                            <button type="button" class="btn btn-add-todo-category" data-toggle="modal" data-target="#addtodocategory">
+                            <button type="button" class="btn btn-add-todo-category" id="btn-add-tag" data-toggle="modal" data-target="#addtodocategory">
                                 Add New  <i class="fa fa-plus" aria-hidden="true"></i>
                             </button>
                         </div>
