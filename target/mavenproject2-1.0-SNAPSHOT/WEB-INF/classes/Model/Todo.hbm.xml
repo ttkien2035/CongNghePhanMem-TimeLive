@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 16, 2020 10:02:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Todo" table="todo" catalog="timelive" optimistic-lock="version">
+        <id name="todoid" type="java.lang.Integer">
+            <column name="todoid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tag" class="Model.Tag" fetch="select">
+            <column name="tagid" />
+        </many-to-one>
+        <many-to-one name="users" class="Model.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="descript" type="string">
+            <column name="descript" length="100" not-null="true" />
+        </property>
+        <property name="prio" type="string">
+            <column name="prio" length="20" not-null="true" />
+        </property>
+        <property name="datetodo" type="date">
+            <column name="datetodo" length="10" not-null="true" />
+        </property>
+        <property name="done" type="java.lang.Boolean">
+            <column name="done" />
+        </property>
+    </class>
+</hibernate-mapping>

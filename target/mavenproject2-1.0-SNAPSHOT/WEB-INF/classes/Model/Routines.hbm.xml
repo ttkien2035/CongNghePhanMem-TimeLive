@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 16, 2020 10:02:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Routines" table="routines" catalog="timelive" optimistic-lock="version">
+        <id name="rid" type="java.lang.Integer">
+            <column name="rid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="Model.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="rname" type="string">
+            <column name="rname" length="100" not-null="true" />
+        </property>
+        <set name="weeklies" table="weekly" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="routineid" />
+            </key>
+            <one-to-many class="Model.Weekly" />
+        </set>
+        <set name="activities" table="activity" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="routineid" not-null="true" />
+            </key>
+            <one-to-many class="Model.Activity" />
+        </set>
+    </class>
+</hibernate-mapping>

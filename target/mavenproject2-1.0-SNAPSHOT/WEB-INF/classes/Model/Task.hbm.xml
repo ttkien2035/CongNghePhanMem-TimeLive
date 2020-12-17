@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 16, 2020 10:02:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Task" table="task" catalog="timelive" optimistic-lock="version">
+        <id name="taskid" type="java.lang.Integer">
+            <column name="taskid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tag" class="Model.Tag" fetch="select">
+            <column name="tagid" />
+        </many-to-one>
+        <many-to-one name="users" class="Model.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="deadline" type="timestamp">
+            <column name="deadline" length="19" />
+        </property>
+        <property name="done" type="java.lang.Boolean">
+            <column name="done" />
+        </property>
+        <property name="doneat" type="timestamp">
+            <column name="doneat" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

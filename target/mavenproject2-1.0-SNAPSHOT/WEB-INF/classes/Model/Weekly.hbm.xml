@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 16, 2020 10:02:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Weekly" table="weekly" catalog="timelive" optimistic-lock="version">
+        <composite-id name="id" class="Model.WeeklyId">
+            <key-property name="wid" type="int">
+                <column name="wid" />
+            </key-property>
+            <key-property name="userid" type="int">
+                <column name="userid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="routines" class="Model.Routines" fetch="select">
+            <column name="routineid" />
+        </many-to-one>
+        <many-to-one name="users" class="Model.Users" update="false" insert="false" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,9 @@
+Model\Weekly.class
+Model\Routines.class
+Model\Task.class
+Model\Activity.class
+Model\Tag.class
+Model\Todo.class
+Model\Users.class
+Model\WeeklyId.class
+Hibernate\HibernateUtil.class

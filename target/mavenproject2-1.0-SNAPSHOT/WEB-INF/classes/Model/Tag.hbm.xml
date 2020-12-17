@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 16, 2020 10:02:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Tag" table="tag" catalog="timelive" optimistic-lock="version">
+        <id name="tagid" type="java.lang.Integer">
+            <column name="tagid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="Model.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="tag" type="string">
+            <column name="tag" length="30" not-null="true" unique="true" />
+        </property>
+        <property name="color" type="string">
+            <column name="color" length="7" not-null="true" />
+        </property>
+        <set name="tasks" table="task" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tagid" />
+            </key>
+            <one-to-many class="Model.Task" />
+        </set>
+        <set name="todos" table="todo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tagid" />
+            </key>
+            <one-to-many class="Model.Todo" />
+        </set>
+    </class>
+</hibernate-mapping>

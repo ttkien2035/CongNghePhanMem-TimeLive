@@ -1,0 +1,238 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 17, 2020, 1:32:18 AM
+    Author     : ASUS
+*/
+.strike {
+    text-decoration: line-through;
+}
+
+td{
+    border: 2px solid black;
+    padding : 5px;
+}
+
+.todo-input{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1rem;
+
+}
+
+.fas{
+    cursor : pointer;
+}
+
+.todoTable-block{
+    margin-top: 1rem;
+}
+
+.pagination-pages{
+    text-align:   right;
+}
+
+
+::-ms-input-placeholder{
+    color:  #632e60;
+}
+
+::-webkit-input-placeholder{
+    color:  #632e60;
+}
+
+input{
+    color:  #632e60;
+}
+
+::placeholder{
+    color : #632e60;
+}
+
+h3{
+    color: #632e60;
+}
+
+.todo-block{
+    border : 1px solid #aaaaaa;
+    padding: 1rem;
+    border-radius: 20px;
+    color: #632e60;
+}
+
+
+
+.todo-overlay{
+    width: 100vw;
+    height: 100vh;
+    background-color: #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity : 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100vw);
+    transition:  transform 250ms;
+    z-index: 2;
+
+}
+
+.todo-modal{
+    width: 50vw;
+    height: 50vh;
+    /*border:  1px solid green;*/
+    background-color: rgb(95, 95, 129);
+}
+
+.todo-modal-close-btn{
+    background-color: red;
+    position: absolute;
+    top: calc(25vh + 2px);
+    left: calc(75vw - 2rem - 2px);
+    width : 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color : white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.slideIntoView {
+    transform: translateX(0);
+    transition:  transform 650ms;
+}
+
+#todoTable tr:nth-child(even){
+    background-color: #ffd6cc;
+}
+
+button{
+    background-color: #ffd6cc ;
+    color: #a11e12;
+    border : 1px outset #ed6a5e;
+}
+
+button:active{
+    border : 1px inset #ed6a5e;
+}
+
+button:hover{
+    background-color: #ffad99;
+}
+
+
+.chevron{
+    transform: translateY(0.05rem);/*Chỉnh cho nút nằm thẳng số*/
+}
+
+.itemsPerPage{
+    text-align: right ;
+    margin-bottom:  0.5rem;
+}
+
+/*  CSS for Task List View  */
+.task-group{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 0.5fr 5fr 3.5fr 0.5fr 0.5fr;
+    background-color: #dddddd;
+    border-radius: 15px;
+    row-gap: 1rem;
+    padding: 5px;
+    align-items: center;
+    overflow: hidden;
+    opacity: 1;
+}
+label{
+    margin: 0;
+}
+.checkbox{
+    vertical-align: middle;
+}
+.middle{
+    vertical-align: middle;
+}
+.add-todo-task{
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.btn-add-todo-task{
+    border: 2px dashed #1a1a1a;
+    border-radius: 20px;
+    outline: none;
+}
+.btn:hover{
+    background-color: #99a9bd;
+}
+/* End CSS for task List View */
+
+/* CSS for Category List View */
+.category-list-view{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.category-group{
+    background-color: #04befe;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    padding: 5px 5px 5px 5px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+}
+.add-todo-category{
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.btn-add-todo-category{
+    border: 2px dashed #1a1a1a;
+    border-radius: 20px;
+}
+.external-category-event{
+    padding-left: 5px;
+}
+/* End CSS for Category List View */
+
+
+
+/*  CSS for Deadline Upcoming  */
+
+.deadline-upcoming-list-view{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* End CSS for Deadline Upcoming  */
+
+/*  RESPONSIVE */
+@media screen and (max-width : 980px){
+    .category-list-view{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (max-width : 420px){
+    /* dành cho điện thoại và các màn hình nhỏ */
+    .category-list-view{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+@media screen and (min-width : 250px){
+
+
+
+}
