@@ -31,98 +31,101 @@
         <script src="js/sidebar.js" type="text/javascript"></script>
     </head>
     <body>
-<div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture">
-        </div>
-        <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
-          </span>
-          <span class="user-role">Administrator</span>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-            <span>Online</span>
-          </span>
-        </div>
-      </div>
-      <div class="sidebar-menu">
-        <ul>
-            <li class="header-menu">
-              <span>General</span>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="dashboard.jsp">
-                <i class="fa fa fa-tachometer"></i>
-                <span>Dashboard</span>
-                <span class="badge badge-pill badge-warning">New</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="todo.jsp">
-                <i class="fa fa-pencil-square-o"></i>
-                <span>Todo</span>
-                <span class="badge badge-pill badge-danger">3</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="task.jsp">
-                <i class="fa fa-tasks"></i>
-                <span>Task</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="routine.jsp">
-                <i class="fa fa-repeat"></i>
-                <span>Routine</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="statistic">
-                <i class="fa fa-chart-line"></i>
-                <span>Statistic</span>
-              </a>
+    <%
+    Users user = (Users)session.getAttribute("user");
+    %>
+    <div class="page-wrapper chiller-theme toggled">
+      <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+      </a>
+      <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+          <div class="sidebar-brand">
+            <a href="#">pro sidebar</a>
+            <div id="close-sidebar">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+          <div class="sidebar-header">
+            <div class="user-pic">
+              <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                alt="User picture">
+            </div>
+            <div class="user-info">
+              <span class="user-name">Jhon
+                <strong>Smith</strong>
+              </span>
+              <span class="user-role">Administrator</span>
+              <span class="user-status">
+                <i class="fa fa-circle"></i>
+                <span>Online</span>
+              </span>
+            </div>
+          </div>
+          <div class="sidebar-menu">
+            <ul>
+                <li class="header-menu">
+                  <span>General</span>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="dashboard.jsp">
+                    <i class="fa fa fa-tachometer"></i>
+                    <span>Dashboard</span>
+                    <span class="badge badge-pill badge-warning">New</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="todo.jsp">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>Todo</span>
+                    <span class="badge badge-pill badge-danger">3</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="task.jsp">
+                    <i class="fa fa-tasks"></i>
+                    <span>Task</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="routine.jsp">
+                    <i class="fa fa-repeat"></i>
+                    <span>Routine</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="statistic">
+                    <i class="fa fa-chart-line"></i>
+                    <span>Statistic</span>
+                  </a>
 
-            </li>
-            <li class="header-menu">
-              <span>Extra</span>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Account</span>
-                <span class="badge badge-pill badge-primary">Beta</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span>Setting</span>
-              </a>
-            </li>
-        </ul>
-      </div>
-      <!-- sidebar-menu  -->
-    </div>
+                </li>
+                <li class="header-menu">
+                  <span>Extra</span>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Account</span>
+                    <span class="badge badge-pill badge-primary">Beta</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-calendar"></i>
+                    <span>Calendar</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-folder"></i>
+                    <span>Setting</span>
+                  </a>
+                </li>
+            </ul>
+          </div>
+          <!-- sidebar-menu  -->
+        </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
         <a>
@@ -151,7 +154,7 @@
                             <!-- the events -->
                             <div id="external-events">
                                 <%
-                                List<Todo> listofTodos = TodoDAO.getAllTodos(1);
+                                List<Todo> listofTodos = TodoDAO.getAllTodos(user.getUserid());
                                 for (int i=0;i<listofTodos.size();i++)
                                 {
                                 %>
@@ -163,7 +166,7 @@
                                         </label>
                                     </div>
                                     <div class="external-event middle" id="task-todo-des"><%= listofTodos.get(i).getDescript() %></div>
-                                    <div><span class="badge badge-secondary middle" id="task-todo-prio"><%= listofTodos.get(i).getPrio() %></span></div>
+                                    <div><span class="badge badge-secondary middle" id="task-todo-prio"><%= listofTodos.get(i).getTag().getTag() %></span></div>
                                     <button class="btn btn-hidden-bgr middle" id="task-todo-edit"><i class="fa fa-pencil-square-o" ></i></button>
                                     <button class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></i></button>
                                 </form>
@@ -189,16 +192,16 @@
                         <div class="card-body ">
                             <div id="external-category-events" class="category-list-view">
                                 <%
-                                    List<Tag> listofTags = TodoDAO.getAllTags(1);
+                                    List<Tag> listofTags = TodoDAO.getAllTags(user.getUserid());
                                     for(int i=0;i<listofTags.size();i++)
                                     {
                                 %>
                                 
                                 <div class="category-group" style="background-color: <%= listofTags.get(i).getColor() %>">
-                                    <input type="hidden" id="tag-id" value="<%= listofTags.get(i).getTagid() %>">
+                                    <input type="hidden" id="tag-id" value="<%= listofTags.get(i).getUsers().getUserid() %>">
                                     <div class="external-category-event" id="tag-des"><%= listofTags.get(i).getTag() %></div>
                                     <button class="btn btn-hidden-bgr middle" id="tag-edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle" id="tag-delete"><i class="fa fa-trash" ></i></i></button>
+                                    <a href="DeleteTag?tagid=<%= listofTags.get(i).getTagid() %>" class="btn btn-hidden-bgr middle" id="tag-delete"><i class="fa fa-trash" ></i></i></a>
                                 </div>
                                 <% } %>
                             </div>
@@ -235,56 +238,58 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form>
+                            <form action="" method="get">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task</span>
                                     </div>
-                                    <input type="text" id="task-des-add" class="form-control">
+                                    <input type="text" id="task-des-add" name="task-des-add" class="form-control">
                                 </div>
-                            </form>
-                            <form>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Category</span>
                                     </div>
-                                    <input type="text" id="task-cate-add" class="form-control" list="categoryList">
-                                    <datalist id="categoryList">
-                                        <!-- <option value="Personal"></option>
-                                        <option value="Work"></option> -->
-                                    </datalist>
+                                    <select class="form-control" id="task-cate-add" name="task-cate-add">
+                                        <%
+                                         for(int i=0;i<listofTags.size();i++)
+                                         {
+                                        %>
+                                        <option calue="<%= listofTags.get(i).getTagid() %>"><%= listofTags.get(i).getTag() %></option>
+                                        <% } %>
+                                    </select>
                                 </div>
-                            </form>
-                            <form>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Date</span>
                                     </div>
-                                    <input type="date" id="todo-date-add" class="form-control">
+                                    <input type="date" id="todo-date-add" name="todo-date-add" class="form-control">
                                 </div>
+                                <button type="button" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block">Add</button>
                             </form>
-                            <button type="button" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block">Add</button>
                         </div>
                         <!---   End card add task   -->
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
 
                 </div>
             </div>
         </div>
         <!---------- End modal add Todo task ---------->
-        <!---------- Start modal add Todo Category ----------->
+        
+        
+        
+        <!---------- Start modal add Todo Tag----------->
         <div class="modal" id="addtodocategory">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Todo</h4>
+                        <h4 class="modal-title">Add Tag</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
@@ -292,27 +297,22 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form>
+                            <form action="InsertTag" method="get">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task</span>
                                     </div>
-                                    <input type="text" id="tag-des-add" class="form-control">
+                                    <input type="text" id="tag-des-add" name="tag-des-add" class="form-control">
                                 </div>
-                            </form>
-                            <form>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Category</span>
                                     </div>
-                                    <input type="color" id="tag-color-add" class="form-control" list="categoryList">
-                                    <script>
-                                        console.log(document.getElementById('tag-color-add').value)
-                                    </script>
+                                    <input type="color" id="tag-color-add" name="tag-color-add" class="form-control" list="categoryList">
                                 </div>
+                            
+                            <button type="submit" id="btn-add-todo-tag" class="btn btn-outline-info btn-lg btn-block">Add</button>
                             </form>
-
-                            <button type="button" id="btn-add-todo-tag" class="btn btn-outline-info btn-lg btn-block">Add</button>
                         </div>
                         <!---   End card add task   -->
                     </div>

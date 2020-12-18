@@ -30,6 +30,11 @@ public class HibernateUtil {
             factory = new Configuration().configure("hibernate.cfg.xml").
                     buildSessionFactory();
         }
+        else if(factory.isClosed()==true)
+        {
+            factory = new Configuration().configure("hibernate.cfg.xml").
+                    buildSessionFactory();
+        }
         return factory;
     }
 }

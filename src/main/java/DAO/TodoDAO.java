@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Hibernate.HibernateUtil;
 import Model.*;
 import java.util.List;
 import org.hibernate.Session;
@@ -21,7 +22,7 @@ public class TodoDAO {
 
         Transaction transaction = null;
         Todo td = null;
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try  {
             // start a transaction
@@ -72,7 +73,8 @@ public class TodoDAO {
             transaction = session.beginTransaction();
             // get an user object
             System.out.println("Start load");
-            listOfTodos= session.createQuery("from Todo").list();
+            String qr="from Todo where userid =:userid";
+            listOfTodos= session.createQuery(qr).setParameter("userid", userid).getResultList();
             System.out.println(listOfTodos.size());
             // commit transaction
             transaction.commit();
@@ -132,14 +134,15 @@ public class TodoDAO {
 
         Transaction transaction = null;
         List < Tag > listOfTags = null;
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try  {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
-            System.out.println("Start load");
-            listOfTags= session.createQuery("from Tag").list();
+            System.out.println("Start load all Tag");
+            String qr="from Tag where userid =:userid";
+            listOfTags= session.createQuery(qr).setParameter("userid", userid).getResultList();
             System.out.println(listOfTags.size());
             // commit transaction
             transaction.commit();
