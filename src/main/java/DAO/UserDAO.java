@@ -59,7 +59,7 @@ public class UserDAO {
 	public static Users existUser(String email) {
 		Transaction transaction = null;
 		Users user = null;
-		String query = "from User U where U.email = :user_email";
+		String query = "from Users U where U.email = :user_email";
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();

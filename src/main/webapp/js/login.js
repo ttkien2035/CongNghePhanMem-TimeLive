@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_in_btn = document.querySelector('#sign-in-btn');
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 
@@ -18,7 +18,9 @@ sign_in_btn.addEventListener("click", () => {
 
 
 const form = document.getElementById('form');
-const username = document.getElementById('username');
+const bd =  document.getElementById('bd');
+var submitOK = false;
+const username = document.getElementById('fullname');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
@@ -27,6 +29,10 @@ form.addEventListener('submit', e => {
 	e.preventDefault();
 	
 	checkInputs();
+        if(submitOK == true)
+        {
+            document.getElementById("form").submit();
+        }
 });
 
 function checkInputs() {
@@ -35,9 +41,10 @@ function checkInputs() {
 	const emailValue = email.value.trim();
 	const passwordValue = password.value.trim();
 	const password2Value = password2.value.trim();
-	
+        const bdValue = bd.value.trim();
+        submitOK = true;
 	if(usernameValue === '') {
-		setErrorFor(username, 'Username cannot be blank');
+		setErrorFor(username, 'Enter your name ');submitOK = false;
 	} else {
 		setSuccessFor(username);
 	}
@@ -45,19 +52,19 @@ function checkInputs() {
 	if(emailValue === '') {
 		setErrorFor(email, 'Email cannot be blank');
 	} else if (!isEmail(emailValue)) {
-		setErrorFor(email, 'Not a valid email');
+		setErrorFor(email, 'Not a valid email');submitOK = false;
 	} else {
 		setSuccessFor(email);
 	}
 	
 	if(passwordValue === '') {
-		setErrorFor(password, 'Password cannot be blank');
+		setErrorFor(password, 'Password cannot be blank');submitOK = false;
 	} else {
 		setSuccessFor(password);
 	}
 	
 	if(password2Value === '') {
-		setErrorFor(password2, 'Password2 cannot be blank');
+		setErrorFor(password2, 'Password2 cannot be blank');submitOK = false;
 	} else if(passwordValue !== password2Value) {
 		setErrorFor(password2, 'Passwords does not match');
 	} else{
