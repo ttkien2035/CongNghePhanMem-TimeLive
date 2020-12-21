@@ -94,7 +94,7 @@
                   </a>
                 </li>
                 <li class="sidebar-dropdown">
-                  <a href="statistic">
+                  <a href="statistic.jsp">
                     <i class="fa fa-chart-line"></i>
                     <span>Statistic</span>
                   </a>

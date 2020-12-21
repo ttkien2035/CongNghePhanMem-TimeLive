@@ -34,6 +34,7 @@
                         
                         <!---->
                         <input type="submit" value="Login" class="btn solid" />
+                        <input type="button"  class="btn solid" value="Forget Password"/>
                         <p class="social-text">Or Sign in with social platforms</p>
                         <!---->
                         <div class="social-media">
