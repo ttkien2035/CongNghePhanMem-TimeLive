@@ -54,34 +54,48 @@
                     </form>
 
                     <!---->
-                    <form action="#" class="sign-up-form" id="form">
+                    <form action="SignUp" class="sign-up-form" id="form" method="post">
                         <!---->
                         <h2 class="title">Sign up</h2>
                         <!---->
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" id="username"/>
+                            <input type="text" placeholder="Your Name" id="fullname" name="fullname"/>
                             <span class="fas fa-check-circle"></span>
                             <span class="fas fa-exclamation-circle"></span>
                             <small>Error</small>
                         </div>
-                        <br>
+                        <div class="input-field">
+                            <i class="fas fa-birthday-cake"></i>
+                            <input type="date" placeholder="Your BirthDay" id="bd" name="bd" value="2000-01-01"/>
+                            <span class="fas fa-check-circle"></span>
+                            <span class="fas fa-exclamation-circle"></span>
+                            <small>Error</small>
+                        </div>
+                        <div class="genderthing">
+                            <i class="fas fa-venus-mars"></i>
+                            <label style="margin-left: 15px;">Male</label>
+                            <input type="radio"  id="male" name="gender" value="1" checked/>
+                            <label>Female</label>
+                            <input type="radio" id="female" name="gender" value="0"/>
+
+                        </div>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" placeholder="Email" id="email"/>
+                            <input type="email" placeholder="Email" id="email" name="mail"/>
                             <span class="fas fa-check-circle"></span>
                             <span class="fas fa-exclamation-circle"></span>
                             <small>Error</small>
                         </div>
-                        <br>
+
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" id="password"/>
+                            <input type="password" placeholder="Password" id="password" name="password"/>
                             <span class="fas fa-check-circle"></span>
                             <span class="fas fa-exclamation-circle"></span>
                             <small>Error</small>
                         </div>
-                        <br>
+
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Password Again"  id="password2"/>
@@ -89,23 +103,9 @@
                             <span class="fas fa-exclamation-circle"></span>
                             <small>Error</small>
                         </div>
-                        <br>
+
                         <input type="submit" class="btn" value="Sign up" />
-                        <p class="social-text">Or Sign up with social platforms</p>
-                        <div class="social-media">
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div>
+                        
                     </form>
 
                 </div>

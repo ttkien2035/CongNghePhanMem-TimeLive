@@ -443,3 +443,27 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+
+
+
+
+/*--------------------------------------------------Minh----------------------------------------------------------*/
+.genderthing{
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  padding: 20px;
+  position: relative;
+    
+}
+.genderthing i{
+     text-align: center;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+/*---------------------------------------------------Minh----------------------------------------------------------------*/
