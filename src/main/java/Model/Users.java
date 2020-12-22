@@ -49,6 +49,15 @@ public class Users  implements java.io.Serializable {
         this.pass = pass;
         this.fullname = fullname;
     }
+
+    public Users(String email, String pass, String fullname, Boolean gender, Date birthdate) {
+        this.email = email;
+        this.pass = pass;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.birthdate = birthdate;
+    }
+    
     public Users(String email, String pass, String fullname, Boolean gender, Date birthdate, Set<Tag> tags, Set<Task> tasks, Set<Routines> routineses, Set<Todo> todos, Set<Weekly> weeklies) {
        this.email = email;
        this.pass = pass;
