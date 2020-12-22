@@ -39,8 +39,8 @@ public class Login extends HttpServlet {
             throws ServletException, IOException, Exception {
                 HttpSession session = request.getSession();
                 response.setContentType("text/html;charset=UTF-8");
-                String email = request.getParameter("email").trim();
-		String password = request.getParameter("password").trim();
+                String email = request.getParameter("email_login").trim();
+		String password = request.getParameter("password_login").trim();
 		System.out.println(email);
                 System.out.println(password);
 		Users user = UserDAO.login(email, password);

@@ -22,18 +22,19 @@
                         <!---->
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" name="email" placeholder="Username" />
+                            <input type="text" name="email_login" placeholder="Username" />
                         </div>
            
                         <!---->
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password" />
+                            <input type="password" name="password_login" placeholder="Password" />
                         </div>
                         
                         
                         <!---->
                         <input type="submit" value="Login" class="btn solid" />
+                        <input type="button"  class="btn solid" value="Forget Password"/>
                         <p class="social-text">Or Sign in with social platforms</p>
                         <!---->
                         <div class="social-media">
