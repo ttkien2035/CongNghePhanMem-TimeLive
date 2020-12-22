@@ -50,6 +50,7 @@ public class TodoDAO {
             transaction = session.beginTransaction();
             // save the student object
             session.save(todo);
+            System.out.println("Insert Sussess");
             // commit transaction
             transaction.commit();
         } catch (Exception e) {

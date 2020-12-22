@@ -16,6 +16,18 @@
         <servlet-name>SignUp</servlet-name>
         <servlet-class>Controller.SignUp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditTag</servlet-name>
+        <servlet-class>Controller.tag.EditTag</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertTodo</servlet-name>
+        <servlet-class>Controller.todo.InsertTodo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTodo</servlet-name>
+        <servlet-class>Controller.todo.DeleteTodo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTag</servlet-name>
+        <url-pattern>/EditTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertTodo</servlet-name>
+        <url-pattern>/InsertTodo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTodo</servlet-name>
+        <url-pattern>/DeleteTodo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

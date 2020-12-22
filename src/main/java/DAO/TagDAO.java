@@ -38,6 +38,7 @@ public class TagDAO {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			transaction = session.beginTransaction();
 			session.update(tag);
+                        System.out.println("Update Sussess");
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -45,6 +46,7 @@ public class TagDAO {
 			}
 			e.printStackTrace();
 		}
+                
 	}
 	
 	public static void deleteTag(int id) {

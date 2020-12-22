@@ -15,20 +15,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="style.css"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/app.css" rel="stylesheet" type="text/css"/>
         <link href="css/sidebar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/calendar.css" rel="stylesheet" type="text/css"/>
         <title>To do List</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./fullcalendar/main.min.css">
-        <script src="./fullcalendar/main.min.js" defer></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/sidebar.js" type="text/javascript"></script>
+        <script src="js/todo.js" type="text/javascript"></script>
     </head>
     <body>
     <%
@@ -158,7 +157,7 @@
                                 for (int i=0;i<listofTodos.size();i++)
                                 {
                                 %>
-                                <form class="task-group mb-1" style="background-color:<%= listofTodos.get(i).getTag().getColor()  %>;">
+                                <div class="task-group mb-1" style="background-color:<%= listofTodos.get(i).getTag().getColor()  %>;">
                                     <input type="hidden" id="task-todo-id" value="<%= listofTodos.get(i).getTodoid()  %>">
                                     <div class="checkbox middle">
                                         <label >
@@ -167,9 +166,9 @@
                                     </div>
                                     <div class="external-event middle" id="task-todo-des"><%= listofTodos.get(i).getDescript() %></div>
                                     <div><span class="badge badge-secondary middle" id="task-todo-prio"><%= listofTodos.get(i).getTag().getTag() %></span></div>
-                                    <button class="btn btn-hidden-bgr middle" id="task-todo-edit"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></i></button>
-                                </form>
+                                    <button class="btn btn-hidden-bgr middle" id="todo-edit" onclick="FillEditTodoModal('<%= listofTodos.get(i).getDescript() %>','<%= listofTodos.get(i).getPrio() %>',<%= listofTodos.get(i).getTag().getTagid() %>,'<%= listofTodos.get(i).getDatetodo() %>')" data-toggle="modal" data-target="#edittodotask"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <a href="DeleteTodo?todoid=<%= listofTodos.get(i).getTodoid() %>" class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></a>
+                                </div>
                                 <% } %>
                             </div>
                             <div class="add-todo-task">
@@ -200,7 +199,7 @@
                                 <div class="category-group" style="background-color: <%= listofTags.get(i).getColor() %>">
                                     <input type="hidden" id="tag-id" value="<%= listofTags.get(i).getUsers().getUserid() %>">
                                     <div class="external-category-event" id="tag-des"><%= listofTags.get(i).getTag() %></div>
-                                    <button class="btn btn-hidden-bgr middle" id="tag-edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button class="btn btn-hidden-bgr middle" id="tag-edit" onclick="FillEditTagModal('<%= listofTags.get(i).getTag() %>','<%= listofTags.get(i).getColor() %>','<%= listofTags.get(i).getTagid() %>' )" data-toggle="modal" data-target="#edittodotag"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                     <a href="DeleteTag?tagid=<%= listofTags.get(i).getTagid() %>" class="btn btn-hidden-bgr middle" id="tag-delete"><i class="fa fa-trash" ></i></i></a>
                                 </div>
                                 <% } %>
@@ -219,10 +218,60 @@
                 <!------------- End Category List View ---------------->
             </div>
             <div class="col-md-4">
-                sgdjfgjsdgfjsghfgjsgfsjhd
+                <div class="week-calendar sticky-top">
+                    <div class="week-container">
+                        <div class="day">
+                            <span id="sun">22</span>
+                            <span>SUN</span>
+                        </div>
+                        <div class="day">
+                            <span id="mon">20</span>
+                            <span>MON</span>
+                        </div>
+                        <div class="day">
+                            <span id="tue">21</span>
+                            <span>TUE</span>
+                        </div>
+                        <div class="day">
+                            <span id="wed">22</span>
+                            <span>WED</span>
+                        </div>
+                        <div class="day">
+                            <span id="thu">22</span>
+                            <span>THU</span>
+                        </div>
+                        <div class="day">
+                            <span id="fri">22</span>
+                            <span>FRI</span>
+                        </div>
+                        <div class="day">
+                            <span id="sat">22</span>
+                            <span>SAT</span>
+                        </div>
+                    </div>
+    
+                    <div class="datetime-container">
+                        <div class="time">
+                            <span id="hour">08</span>:
+                            <span id="min">00</span>
+                        </div>
+                        <div class="date">
+                            <span id="date">23</span>
+                            <span id="month">October</span>
+                            <span id="year">2020</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
+                            
+                            
+                            
+                            
+                            
+                            
+                            
         <!-- Modal add Todo Task -->
         <div class="modal" id="addtodotask">
             <div class="modal-dialog">
@@ -238,23 +287,29 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form action="" method="get">
+                            <form action="InsertTodo" method="get">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task</span>
                                     </div>
-                                    <input type="text" id="task-des-add" name="task-des-add" class="form-control">
+                                    <input type="text" id="todo-des-add" name="todo-des-add" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Priority</span>
+                                    </div>
+                                    <input type="text" id="todo-prio-add" name="todo-prio-add" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Category</span>
                                     </div>
-                                    <select class="form-control" id="task-cate-add" name="task-cate-add">
+                                    <select class="form-control" id="todo-tag-add" name="todo-tag-add">
                                         <%
                                          for(int i=0;i<listofTags.size();i++)
                                          {
                                         %>
-                                        <option calue="<%= listofTags.get(i).getTagid() %>"><%= listofTags.get(i).getTag() %></option>
+                                        <option value="<%= listofTags.get(i).getTagid() %>"><%= listofTags.get(i).getTag() %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -264,7 +319,7 @@
                                     </div>
                                     <input type="date" id="todo-date-add" name="todo-date-add" class="form-control">
                                 </div>
-                                <button type="button" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block">Add</button>
+                                <input type="submit" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block" value="Add">
                             </form>
                         </div>
                         <!---   End card add task   -->
@@ -272,7 +327,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
 
                 </div>
@@ -280,6 +335,73 @@
         </div>
         <!---------- End modal add Todo task ---------->
         
+        
+        
+        <!-- Modal edit Todo Task -->
+        <div class="modal" id="edittodotask">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Todo</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!------ Start card add task ----->
+                        <div class= "card todo-block container mt-3">
+                            <form action="" method="get">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Task</span>
+                                    </div>
+                                    <input type="text" id="todo-des-edit" name="todo-des-edit" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Priority</span>
+                                    </div>
+                                    <input type="text" id="todo-prio-edit" name="todo-prio-edit" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Category</span>
+                                    </div>
+                                    <select class="form-control" id="todo-tag-edit" name="todo-tag-edit">
+                                        <%
+                                         for(int i=0;i<listofTags.size();i++)
+                                         {
+                                        %>
+                                        <option value="<%= listofTags.get(i).getTagid() %>"><%= listofTags.get(i).getTag() %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Date</span>
+                                    </div>
+                                    <input type="date" id="todo-date-edit" name="todo-date-edit" class="form-control">
+                                </div>
+                                <input type="submit" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block" value="OK">
+                            </form>
+                        </div>
+                        <!---   End card add task   -->
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+       
+        
+        <!---------- End modal edit Todo task ---------->
         
         
         <!---------- Start modal add Todo Tag----------->
@@ -300,13 +422,13 @@
                             <form action="InsertTag" method="get">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Task</span>
+                                        <span class="input-group-text">Tag</span>
                                     </div>
                                     <input type="text" id="tag-des-add" name="tag-des-add" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Category</span>
+                                        <span class="input-group-text">Color</span>
                                     </div>
                                     <input type="color" id="tag-color-add" name="tag-color-add" class="form-control" list="categoryList">
                                 </div>
@@ -325,7 +447,53 @@
                 </div>
             </div>
         </div>
-        <!---------- End modal add Todo Category --------------->
+        <!---------- End modal add Todo Tag --------------->
+        
+        
+        <!---------- Start modal edit Todo Tag----------->
+        <div class="modal" id="edittodotag">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Tag</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!------ Start card add task ----->
+                        <div class= "card todo-block container mt-3">
+                            <form action="EditTag" method="get">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Tag</span>
+                                    </div>
+                                    <input type="text" id="tag-des-edit" name="tag-des-edit" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Color</span>
+                                    </div>
+                                    <input type="color" id="tag-color-edit" name="tag-color-edit" class="form-control">
+                                </div>
+                                <input type="hidden" name="tag-id-edit" id="tag-id-edit" value="">
+                            <button type="submit" id="btn-add-todo-edit" class="btn btn-outline-info btn-lg btn-block">OK</button>
+                            </form>
+                        </div>
+                        <!---   End card add task   -->
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!---------- End modal edit Todo Category --------------->
     </div>
   </main>
   <!-- page-content" -->
@@ -336,7 +504,45 @@
 </body>
 </html>
 <script>
+    function updateCalendar() {
+            var now = new Date();
+            var day = now.getDay(),
+                mon = now.getMonth(),
+                date = now.getDate(),
+                year = now.getFullYear(),
+                hour = now.getHours(),
+                min = now.getMinutes();
+            
+            Number.prototype.pad = function(digits) {
+                for (var n= this.toString(); n.length < digits; n = 0 + n);
+                return n;
+            }
+            
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            var ids = ["hour", "min", "date", "month", "year"];
+            var values = [hour.pad(2), min.pad(2), date.pad(2) , months[mon], year];
+            for (var i = 0; i< ids.length; i++) {
+                document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+            }
 
+            var weekids = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+            var begin = date - day;
+            var dateInWeek = new Date();
+            
+            for (var i = 0; i < 7; i++) {
+                dateInWeek.setDate(begin + i );
+                document.getElementById(weekids[i]).firstChild.nodeValue = dateInWeek.getDate().pad(2);
+            }
+
+            document.getElementById(weekids[day]).parentElement.classList.add("today");
+
+        }
+
+    function initCalendar() {
+        updateCalendar();
+        window.setInterval("updateCalendar()", 1000);
+    }
     $(function(){
         $('.check').click(function(){
             var list = document.getElementsByClassName('task-group mb-1');
