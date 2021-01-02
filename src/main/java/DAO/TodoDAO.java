@@ -43,7 +43,7 @@ public class TodoDAO {
     
     public static void saveTodo(Todo todo) {
         Transaction transaction = null;
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try {
             // start a transaction
@@ -67,7 +67,7 @@ public class TodoDAO {
 
         Transaction transaction = null;
         List < Todo > listOfTodos = null;
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try  {
             // start a transaction
@@ -89,7 +89,7 @@ public class TodoDAO {
     
     public static void updateTodo(Todo td) { //edit toàn bộ các cột
         Transaction transaction = null;
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try  {
             // start a transaction
@@ -107,7 +107,7 @@ public class TodoDAO {
     public static void deleteTodo(int id) {
 
         Transaction transaction = null;
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try {
             // start a transaction
@@ -151,6 +151,9 @@ public class TodoDAO {
             if (transaction != null) {
                 transaction.rollback();
             }
+        }
+        finally{
+            session.close();
         }
         return listOfTags;
     }

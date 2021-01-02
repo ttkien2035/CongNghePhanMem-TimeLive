@@ -28,6 +28,22 @@
         <servlet-name>DeleteTodo</servlet-name>
         <servlet-class>Controller.todo.DeleteTodo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertTask</servlet-name>
+        <servlet-class>Controller.InsertTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTask</servlet-name>
+        <servlet-class>Controller.EditTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoneTask</servlet-name>
+        <servlet-class>Controller.DoneTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DelTask</servlet-name>
+        <servlet-class>Controller.DelTask</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -55,6 +71,22 @@
     <servlet-mapping>
         <servlet-name>DeleteTodo</servlet-name>
         <url-pattern>/DeleteTodo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertTask</servlet-name>
+        <url-pattern>/InsertTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTask</servlet-name>
+        <url-pattern>/EditTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoneTask</servlet-name>
+        <url-pattern>/DoneTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DelTask</servlet-name>
+        <url-pattern>/DelTask</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
