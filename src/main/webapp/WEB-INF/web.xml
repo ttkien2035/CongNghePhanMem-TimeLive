@@ -44,6 +44,10 @@
         <servlet-name>DelTask</servlet-name>
         <servlet-class>Controller.DelTask</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUpConfirm</servlet-name>
+        <servlet-class>Controller.SignUpConfirm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>DelTask</servlet-name>
         <url-pattern>/DelTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpConfirm</servlet-name>
+        <url-pattern>/SignUpConfirm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
