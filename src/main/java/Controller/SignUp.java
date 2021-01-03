@@ -6,6 +6,8 @@
 package Controller;
 
 import DAO.UserDAO;
+import Mail.MailAPI;
+import Mail.RandomString;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -115,8 +117,11 @@ public class SignUp extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 Users a=new Users(mail,pass,fullname,boolgender,birthdate);
-                UserDAO.saveUser(a);
-                url="/signup-success.jsp";
+                
+                url="/signup-confirm.jsp";
+                request.getSession().setAttribute( "newuser", a);
+                String code = MailAPI.Send(mail);
+                request.getSession().setAttribute("code",code);
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
                 dispatcher.forward(request, response);
             }
