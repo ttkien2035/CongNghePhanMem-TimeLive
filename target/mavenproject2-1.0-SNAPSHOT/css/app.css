@@ -177,6 +177,24 @@ label{
 .external-event.middle{
     color: #ffffff;
 }
+.date-todo{
+    margin-left: 40px;
+    color: black;
+    font-size: 20px;
+    outline: darkgray;
+    border: solid 1px;
+}
+.btn-date-todo{
+    margin-left: 30px;
+    border: solid 2px #239847;
+    border-radius: 15px;
+    font-size: 20px;
+    color: black;
+    padding: 5px 5px 5px 5px
+}
+.card-header{
+    display: -webkit-box;
+}
 /* End CSS for task List View */
 
 /* CSS for Category List View */
@@ -233,6 +251,10 @@ label{
     .category-list-view{
         display: grid;
         grid-template-columns: 1fr;
+    }
+    .card-header{
+        display: flex;
+        flex-direction: column;
     }
 }
 @media screen and (min-width : 250px){

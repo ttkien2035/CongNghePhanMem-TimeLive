@@ -7,6 +7,7 @@ package DAO;
 
 import Hibernate.HibernateUtil;
 import Model.*;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -86,7 +87,29 @@ public class TodoDAO {
         }
         return listOfTodos;
     }
-    
+    public static List < Todo > getAllTodosbydate(int userid,String date) {
+
+        Transaction transaction = null;
+        List < Todo > listOfTodos = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load todo by date");
+            String qr="from Todo where userid =:userid and datetodo = '" + String.valueOf(date) + "'";
+            listOfTodos= session.createQuery(qr).setParameter("userid", userid).getResultList();
+            System.out.println(listOfTodos.size() + "load duoc may cai todo ne");
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return listOfTodos;
+    }
     public static void updateTodo(Todo td) { //edit toàn bộ các cột
         Transaction transaction = null;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -96,6 +119,7 @@ public class TodoDAO {
             transaction = session.beginTransaction();
             // save the student object
             session.update(td);
+            System.out.println("Update todo sussess");
             // commit transaction
             transaction.commit();
         } catch (Exception e) {

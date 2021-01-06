@@ -30,6 +30,9 @@
     <body>
     <%
     Users user = (Users)session.getAttribute("user");
+    if(user == null ){ %>
+    <jsp:forward page="login.jsp"/>
+    <% }
     String a = user.getEmail();
     List<Tag> listofTags = TodoDAO.getAllTags(user.getUserid());
     %>

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,12 +57,14 @@ public class Login extends HttpServlet {
 			 * response);
 			 */
                         System.out.println("Chuyen huong");
+                        response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
 			
 			
 		} else {
-			throw new Exception("Login not successful...");
+                        request.setAttribute("error_login", "Sai tài khoản hoặc mật khẩu");
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+                        dispatcher.forward(request, response);
 		}
-                response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
         
     }
 

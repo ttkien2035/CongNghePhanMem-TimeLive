@@ -15,8 +15,10 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,13 +50,20 @@ public class InsertTodo extends HttpServlet {
         Tag todo_tag = TagDAO.getTag(Integer.parseInt(request.getParameter("todo-tag-add")));
         String todo_date = request.getParameter("todo-date-add");
         Date tododate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("todo-date-add"));
+        String date = request.getParameter("date_todo");
+        request.setAttribute("date_todo_send", date);
+        if (date != null){
+            List<Todo> listofTodos = TodoDAO.getAllTodosbydate(user.getUserid(), date);
+            request.setAttribute("listofTodos", listofTodos);
+        } 
         Todo td = new Todo(todo_tag,user,todo_des,todo_prio,tododate,false);
         System.out.println(todo_des);
         System.out.println(todo_prio);
         System.out.println(todo_tag);
         System.out.println(todo_date);
         TodoDAO.saveTodo(td);
-        response.sendRedirect(request.getContextPath() + "/todo.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/todo.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
