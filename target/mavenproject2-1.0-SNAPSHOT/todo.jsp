@@ -4,6 +4,9 @@
     Author     : ASUS
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.*"%>
 <%@page import="DAO.*"%>
@@ -29,9 +32,13 @@
         <script src="js/sidebar.js" type="text/javascript"></script>
         <script src="js/todo.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body onload="initCalendar()">
     <%
     Users user = (Users)session.getAttribute("user");
+    if(user == null ){ %>
+    <jsp:forward page="login.jsp"/>
+    <% }
+    String a = user.getEmail();
     %>
     <div class="page-wrapper chiller-theme toggled">
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -51,10 +58,10 @@
                 alt="User picture">
             </div>
             <div class="user-info">
-              <span class="user-name">Jhon
-                <strong>Smith</strong>
+              <span class="user-name">
+                <strong><%=user.getFullname()          %></strong>
               </span>
-              <span class="user-role">Administrator</span>
+              <span class="user-role"><%=user.getEmail()            %></span>
               <span class="user-status">
                 <i class="fa fa-circle"></i>
                 <span>Online</span>
@@ -147,21 +154,44 @@
                 <div class="mb-3 container">
                     <div class="card todo-block container">
                         <div class="card-header">
-                            <h4 class="card-title">Todo List <button class="btn" id="task-todo-refresh" ><i class="fa fa-repeat"></i></button></h4>
+                            <h4 class="card-title">Todo List </h4>
+                            <%
+                            String date = (String)request.getAttribute("date_todo_send");
+                            String datetodo;
+                            if (date != null){
+                            datetodo = date;
+                            }
+                            else{
+                                datetodo = String.valueOf(java.time.LocalDate.now());
+                            }
+                            
+                            %>
+                            <form action="SearchTodo" method="post">
+                                <input type="date" id="date_todo" class="date-todo" name="date_todo" value="<%= datetodo %>"> 
+                                <input type="submit" class="btn-date-todo" value="Load" >
+                            </form>
                         </div>
                         <div class="card-body">
                             <!-- the events -->
                             <div id="external-events">
                                 <%
-                                List<Todo> listofTodos = TodoDAO.getAllTodos(user.getUserid());
+                                List<Todo> listofTodos = null;
+                                listofTodos = (List<Todo>)request.getAttribute("listofTodos");
+                                if(listofTodos==null){
+                                    listofTodos = TodoDAO.getAllTodosbydate(user.getUserid(), datetodo);
+                                }
+                                if (listofTodos == null){%>
+                                <span>Không có todo nào cho hôm nay</span>
+                                <% }
+                                else{
                                 for (int i=0;i<listofTodos.size();i++)
                                 {
                                 %>
-                                <div class="task-group mb-1" style="background-color:<%= listofTodos.get(i).getTag().getColor()  %>;">
-                                    <input type="hidden" id="task-todo-id" value="<%= listofTodos.get(i).getTodoid()  %>">
+                                <div class="task-group mb-1" style="background-color:<%= listofTodos.get(i).getTag().getColor()  %>; <% if(listofTodos.get(i).getDone()==true){ %> opacity:0.5;  <% } %> ">
+                                    <input type="hidden" id="task-todo-id" value="<%= listofTodos.get(i).getTodoid() %>">
                                     <div class="checkbox middle">
                                         <label >
-                                            <input type="checkbox" id="task-todo-check" class="check" >
+                                            <input type="checkbox" id="task-todo-check" class="check" <% if(listofTodos.get(i).getDone()==true){  %>checked<% } %> onclick="location.assign('UpdateStatusTodo?todo_id=<%= listofTodos.get(i).getTodoid() %>');" >
                                         </label>
                                     </div>
                                     <div class="external-event middle" id="task-todo-des"><%= listofTodos.get(i).getDescript() %></div>
@@ -169,7 +199,7 @@
                                     <button class="btn btn-hidden-bgr middle" id="todo-edit" onclick="FillEditTodoModal('<%= listofTodos.get(i).getDescript() %>','<%= listofTodos.get(i).getPrio() %>',<%= listofTodos.get(i).getTag().getTagid() %>,'<%= listofTodos.get(i).getDatetodo() %>')" data-toggle="modal" data-target="#edittodotask"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                     <a href="DeleteTodo?todoid=<%= listofTodos.get(i).getTodoid() %>" class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></a>
                                 </div>
-                                <% } %>
+                                <% } } %>
                             </div>
                             <div class="add-todo-task">
                                 <button type="button" class="btn btn-add-todo-task" id="btn-add-todo-task" data-toggle="modal" data-target="#addtodotask">
@@ -264,14 +294,7 @@
                 </div>
             </div>
         </div>
-        
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+                          
         <!-- Modal add Todo Task -->
         <div class="modal" id="addtodotask">
             <div class="modal-dialog">
@@ -317,7 +340,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Date</span>
                                     </div>
-                                    <input type="date" id="todo-date-add" name="todo-date-add" class="form-control">
+                                    <input type="date" id="todo-date-add" name="todo-date-add" class="form-control" value="<%= datetodo %>"> 
                                 </div>
                                 <input type="submit" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block" value="Add">
                             </form>

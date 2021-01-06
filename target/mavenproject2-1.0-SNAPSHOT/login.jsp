@@ -24,7 +24,12 @@
                             <i class="fas fa-user"></i>
                             <input type="text" name="email_login" placeholder="Username" />
                         </div>
-           
+                        <% 
+                        String err_login = (String)request.getAttribute("error_login"); 
+                        System.out.println(err_login);
+                        if (err_login == null ) err_login="" ;
+                        %>
+                        <span style="color: red"><%= err_login %></span>
                         <!---->
                         <div class="input-field">
                             <i class="fas fa-lock"></i>

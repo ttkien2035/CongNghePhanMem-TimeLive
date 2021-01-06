@@ -124,6 +124,11 @@ public class Todo  implements java.io.Serializable {
         this.done = done;
     }
 
+    @Override
+    public String toString() {
+        return "Todo{" + "todoid=" + todoid + ", tag=" + tag + ", users=" + users + ", descript=" + descript + ", prio=" + prio + ", datetodo=" + datetodo + ", done=" + done + '}';
+    }
+
 
 
 

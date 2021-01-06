@@ -48,6 +48,14 @@
         <servlet-name>SignUpConfirm</servlet-name>
         <servlet-class>Controller.SignUpConfirm</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchTodo</servlet-name>
+        <servlet-class>Controller.todo.SearchTodo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStatusTodo</servlet-name>
+        <servlet-class>Controller.todo.UpdateStatusTodo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>SignUpConfirm</servlet-name>
         <url-pattern>/SignUpConfirm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchTodo</servlet-name>
+        <url-pattern>/SearchTodo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatusTodo</servlet-name>
+        <url-pattern>/UpdateStatusTodo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
