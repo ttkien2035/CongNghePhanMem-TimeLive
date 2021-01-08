@@ -4,8 +4,25 @@
     Author     : ASUS
 --%>
 
+<%@page import="DAO.TaskDAO"%>
+<%@page import="Model.Task"%>
+<%@page import="java.util.List"%>
+<%@page import="Model.Users"%>
+<%@page import="DAO.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    String sid = request.getParameter("user-id");
+    if(sid.isEmpty()){
+        response.sendRedirect("manage-user.jsp");
+    }
+
+    int id = Integer.parseInt(sid);
+    Users u = UserDAO.getUser(id);
+            
+    
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,7 +48,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="admin.jsp">Home</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -42,10 +59,10 @@
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name">
+            <strong><%=u.getFullname()            %></strong>
           </span>
-          <span class="user-role">Administrator</span>
+          <span class="user-role"><%=u.getEmail()        %></span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>
@@ -87,8 +104,84 @@
     </nav>
   <!-- sidebar-wrapper  -->
     <main class="page-content">
-    <div class="container-fluid">
-    </div>
+        <div class="container-fluid">
+            <h2>TIME LIVE</h2>
+            <h2><b>User Info</b></h2>
+            <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
+                <h5>Name : <%=u.getFullname()             %></h5>
+                <h5>Sex : <%=u.returnGen()             %></h5>
+                <h5>Email : <%=u.getEmail()         %></h5>
+                <h5>Birthday : <%=u.getBirthdate()             %></h5>
+            </article>
+            <h2><b>User Todo List</b></h2>
+            <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
+                <h5>Điền thông tin vào</h5>
+            </article>
+            <h2><b>User Task List</b></h2>
+            <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
+                <%
+                    List <Task> curtask = TaskDAO.getAllTasks(u.getUserid());
+                    List <Task> fihtask = TaskDAO.getAllDoneTasks(u.getUserid());
+                %>
+                <h5>Current Task : <%=curtask.size()           %></h5>
+                    <div class="card todo-block container" id="mytask">   
+                        <table id="mytask-table">
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Deadline</th>
+                            </tr>
+                            <%
+                            for(int i=0;i<curtask.size();i++){
+                                Task x = curtask.get(i);
+                                String color = x.getTag().getColor();
+                            %>
+                            <tr style="background-color: <%=color%>">
+                                <td><%=x.getTaskid()   %></td>
+                                <td><%=x.getTaskname()   %></td>
+                                <td><%=TaskDAO.returnDate(x.getDeadline())  %></td>
+                            </tr>   
+                            <%   
+                                }
+                            %>
+                        </table>
+                    </div>
+                <h5>Finished Task : <%=fihtask.size()           %></h5>
+                    <div class="card todo-block container" id="mytaskdone">   
+                        <table id="mytaskdone-table">
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Deadline</th>
+                                <th>Done at</th>
+                            </tr>
+                            <%
+                            for(int i=0;i<fihtask.size();i++){
+                                Task x = fihtask.get(i);
+                                String color = x.getTag().getColor();
+                            %>
+                            <tr style="background-color: <%=color%>">
+                                <td><%=x.getTaskid()   %></td>
+                                <td><%=x.getTaskname()   %></td>
+                                <td><%=TaskDAO.returnDate(x.getDeadline())  %></td>
+                                <td><%=TaskDAO.returnDate(x.getDoneat())  %></td>
+                            </tr>   
+                            <%   
+                                }
+                            %>
+                        </table>
+                    </div>
+            </article>
+            <h2><b>User Routine List</b></h2>
+             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
+                <h5>Điền thông tin vào</h5>
+            </article>
+            <h2><b>User Statistic</b></h2>
+             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
+                <h5>Điền thông tin vào</h5>
+            </article>
+            
+        </div>
     </main>
   <!-- page-content" -->
     </div>
