@@ -56,6 +56,10 @@
         <servlet-name>UpdateStatusTodo</servlet-name>
         <servlet-class>Controller.todo.UpdateStatusTodo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteUser</servlet-name>
+        <servlet-class>Controller.DeleteUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -111,6 +115,11 @@
     <servlet-mapping>
         <servlet-name>UpdateStatusTodo</servlet-name>
         <url-pattern>/UpdateStatusTodo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUser</servlet-name>
+        <url-pattern>/DeleteUser</url-pattern>
+        <url-pattern>/adminpage/DeleteUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

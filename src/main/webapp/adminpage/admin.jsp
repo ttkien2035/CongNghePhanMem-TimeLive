@@ -4,8 +4,21 @@
     Author     : ASUS
 --%>
 
+<%@page import="DAO.TaskDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+    int soTask = TaskDAO.SoTask();
+
+
+
+
+
+
+    
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,8 +56,7 @@
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name">
           </span>
           <span class="user-role">Administrator</span>
           <span class="user-status">
@@ -106,6 +118,12 @@
                             <h4>Todo</h4>
                             <button class="btn-add-todo-category">View</button>
                         </div><!-- comment -->
+                        <div class="card-info">
+                            <img src="https://www.pikpng.com/pngl/m/467-4676756_jpg-transparent-download-task-clip-art-at-clker.png">
+                            <h3><%=soTask%></h3>
+                            <h4>Task</h4>
+                            <button class="btn-add-todo-category" onclick="location.href ='admin-task.jsp';">View</button>
+                        </div>
                         <div class="card-info">
                             <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
                             <h3>3000</h3>

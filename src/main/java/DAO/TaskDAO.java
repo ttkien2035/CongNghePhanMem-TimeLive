@@ -131,6 +131,29 @@ public class TaskDAO {
         }
         return listOfTasks;
     }
+    public static List < Task > getAllTasksNoId() {
+
+        Transaction transaction = null;
+        List < Task > listOfTasks = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load");
+            String qr="from Task t order by t.users.id";
+            listOfTasks= session.createQuery(qr).getResultList();
+            System.out.println(listOfTasks.size());
+            // commit transaction
+            transaction.commit();session.close();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();session.close();
+            }
+        }
+        return listOfTasks;
+    }
     public static List < Task > getAllDoneTasks(int userid) {
 
         Transaction transaction = null;
@@ -154,9 +177,82 @@ public class TaskDAO {
         }
         return listOfTasks;
     }
+    
+    public static int SoTask()
+    {
+        int count=99;
+        Transaction transaction = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try {
+            // start a transaction
+            transaction = session.beginTransaction();
+            Number c = (Number) session.createQuery("select count(*) from Task").uniqueResult();
+            count=c.intValue();
+            session.close();
+        } 
+        catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();session.close();
+            }
+        }      
+        return count;
+    }
+    public static int SoTaskNotDone()
+    {
+        int count=99;
+        Transaction transaction = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try {
+            // start a transaction
+            transaction = session.beginTransaction();
+            Number c = (Number) session.createQuery("select count(*) from Task t where t.done=false").uniqueResult();
+            count=c.intValue();
+            session.close();
+        } 
+        catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();session.close();
+            }
+        }      
+        return count;
+    }
+    public static int SoTaskDone()
+    {
+        int count=99;
+        Transaction transaction = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try {
+            // start a transaction
+            transaction = session.beginTransaction();
+            Number c = (Number) session.createQuery("select count(*) from Task t where t.done=true").uniqueResult();
+            count=c.intValue();
+            session.close();
+        } 
+        catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();session.close();
+            }
+        }      
+        return count;
+    }
     public static String returnDate(Date date)
     {
+        if(date == null)
+        {
+            return "...";
+        }
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");          
         return df.format(date);
+    }
+    public static String returnDone(Boolean a)
+    {
+        if(a)
+        {
+            return "Yes";
+        }        
+        return "No";
     }
 }

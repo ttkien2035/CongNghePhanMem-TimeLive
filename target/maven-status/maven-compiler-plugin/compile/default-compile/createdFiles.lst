@@ -2,11 +2,14 @@ Model\Weekly.class
 Model\Routines.class
 Controller\DelTask.class
 Controller\SignUp.class
+Controller\todo\UpdateStatusTodo.class
 Controller\tag\EditTag.class
 Controller\todo\InsertTodo.class
 Mail\RandomString.class
 Model\Activity.class
+Controller\todo\SearchTodo.class
 Model\Todo.class
+Controller\DeleteUser.class
 DAO\TaskDAO.class
 Model\WeeklyId.class
 Controller\tag\InsertTag.class

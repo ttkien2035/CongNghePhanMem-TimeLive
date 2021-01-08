@@ -4,9 +4,17 @@
     Author     : ASUS
 --%>
 
+<%@page import="Model.Users"%>
 <%@page import="Hibernate.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    Users user = (Users)session.getAttribute("user");
+    if(user == null ){ %>
+    <jsp:forward page="login.jsp"/>
+    <% }
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,7 +43,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="dashboard.jsp">Home</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -46,10 +54,10 @@
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name">
+            <strong><%=user.getFullname()                %>       </strong>
           </span>
-          <span class="user-role">Administrator</span>
+          <span class="user-role"><%=user.getEmail()               %></span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>

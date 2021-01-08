@@ -4,9 +4,19 @@
     Author     : ASUS
 --%>
 
+<%@page import="DAO.UserDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="Model.Users"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        List<Users> list = UserDAO.getAllUserTypeUser();
+        
+    
+    
+    %>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
@@ -23,6 +33,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../js/sidebar.js" type="text/javascript"></script>
+        <script src="../js/manage-user.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="page-wrapper chiller-theme toggled">
@@ -32,7 +43,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="admin.jsp">Home</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -96,6 +107,7 @@
                     <table class="table table-light table-hover">
                       <thead class="thead-dark">
                         <tr>
+                            <th>Id</th>
                           <th>Fullname</th>
                           <th>Gender</th>
                           <th>Email</th>
@@ -104,27 +116,23 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <%
+                        for(int i=0;i<list.size();i++){
+                            Users x = list.get(i);
+
+                        %>  
                         <tr>
-                          <td>John</td>
-                          <td>Male</td>
-                          <td>john@example.com</td>
-                          <td>2018-12-23</td>
-                          <td><button class="btn" ><i class="fas fa-edit"></i></button><button  class="btn" ><i class="fa fa-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                          <td>Mary</td>
-                          <td>Female</td>
-                          <td>mary@example.com</td>
-                          <td>2000-01-11</td>
-                          <td><button class="btn" ><i class="fas fa-edit"></i></button><button  class="btn" ><i class="fa fa-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                          <td>July</td>
-                          <td>Demale</td>
-                          <td>july@example.com</td>
-                          <td>2000-12-30</td>
-                          <td><button class="btn" ><i class="fas fa-edit"></i></button><button  class="btn" ><i class="fa fa-trash"></i></button></td>
-                        </tr>
+                            <td><%=x.getUserid()         %></td>
+                            <td><%=x.getFullname()  %></td>
+                            <td><%=x.returnGen()   %></td>
+                            <td><%=x.getEmail()  %></td>
+                            <td><%=x.getBirthdate()  %></td>
+                            <td><button class="btn" id="view-info"><i class="fas fa-edit"></i></button>
+                                <button  class="btn" id="del-user"><i class="fa fa-trash"></i></button></td>
+                        </tr>   
+                        <%   
+                            }
+                        %>
                       </tbody>
                     </table>
                 </div>
@@ -179,6 +187,14 @@
     </main>
   <!-- page-content" -->
     </div>
+        <div style="display:none;">
+            <form id="user-detail" action="user-detail.jsp" method="post">
+                <input type="hidden" id="user-id" name="user-id">
+            </form>
+            <form id="delete-user" action="DeleteUser" method="post">
+                <input type="hidden" id="user-id-del" name="user-id-del">
+            </form>
+        </div>          
     </body>
 </html>
 <script>
