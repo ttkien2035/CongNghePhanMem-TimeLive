@@ -4,11 +4,10 @@
     Author     : ASUS
 --%>
 
-<%@page import="DAO.TaskDAO"%>
-<%@page import="Model.Task"%>
+<%@page import="javax.enterprise.inject.Model"%>
+<%@page import="DAO.*"%>
+<%@page import="Model.*"%>
 <%@page import="java.util.List"%>
-<%@page import="Model.Users"%>
-<%@page import="DAO.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -115,7 +114,36 @@
             </article>
             <h2><b>User Todo List</b></h2>
             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
-                <h5>Điền thông tin vào</h5>
+                <%
+                    List<Todo> listofTodos = TodoDAO.getAllTodos(u.getUserid());
+                %>
+                <h5>All todo: <%= listofTodos.size() %> </h5>
+                <div class="card todo-block container" id="mytask">
+                    <table id="mytodo-table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Prio</th>
+                            <th>Date</th>
+                            <th>Done</th>
+                        </tr>
+                        <%
+                            for(int i=0;i<listofTodos.size();i++){
+                                Todo x = listofTodos.get(i);
+                                String color = x.getTag().getColor();
+                        %>
+                        <tr style="background-color: <%=color%>">
+                            <td><%= x.getTodoid()   %></td>
+                            <td><%= x.getDescript()   %></td>
+                            <td><%= x.getPrio()  %></td>
+                            <td><%= x.getDatetodo()  %></td>
+                            <td><%= x.getDone()  %></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
+                </div>
             </article>
             <h2><b>User Task List</b></h2>
             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">

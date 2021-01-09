@@ -19,6 +19,61 @@ import org.hibernate.cfg.Configuration;
  * @author ASUS
  */
 public class TodoDAO {
+    public static int getTotalTodo(){
+        Transaction transaction = null;
+        List < Todo > listOfTodosList = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load all Todo");
+            String qr="from Todo ";
+            listOfTodosList = session.createQuery(qr).getResultList();
+            System.out.println(listOfTodosList.size());
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        if(listOfTodosList==null){
+            return 0;
+        }
+        else{
+            return listOfTodosList.size();
+        }
+    }
+    public static List< Todo > getAllTodo(){
+        Transaction transaction = null;
+        List < Todo > listOfTodosList = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load all Todo");
+            String qr="from Todo ";
+            listOfTodosList = session.createQuery(qr).getResultList();
+            System.out.println(listOfTodosList.size());
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        return listOfTodosList;
+    }
     public static Todo getTodo(int id) {
 
         Transaction transaction = null;

@@ -4,13 +4,13 @@
     Author     : ASUS
 --%>
 
-<%@page import="DAO.TaskDAO"%>
+<%@page import="DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <%
     int soTask = TaskDAO.SoTask();
-
+    int soTodo = TodoDAO.getTotalTodo();
 
 
 
@@ -113,10 +113,10 @@
                             <button class="btn-add-todo-category">View</button>
                         </div>
                         <div class="card-info">
-                            <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-                            <h3>300</h3>
+                            <img src="https://to-do-cdn.microsoft.com/static-assets/c87265a87f887380a04cf21925a56539b29364b51ae53e089c3ee2b2180148c6/icons/logo.png">
+                            <h3><%= soTodo %></h3>
                             <h4>Todo</h4>
-                            <button class="btn-add-todo-category">View</button>
+                            <button class="btn-add-todo-category" onclick="location.href ='admin-todo.jsp';">View</button>
                         </div><!-- comment -->
                         <div class="card-info">
                             <img src="https://www.pikpng.com/pngl/m/467-4676756_jpg-transparent-download-task-clip-art-at-clker.png">
