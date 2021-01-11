@@ -55,6 +55,24 @@ public class UserDAO {
         }
         return null;
     }
+    public static Users loginAdmin(String email, String password) {
+        Transaction transaction = null;
+        Users user = null;
+        String query = "from Users U where U.email = :user_email";
+        System.out.println("Start check login");
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+                transaction = session.beginTransaction();
+                user = (Users)session.createQuery(query).setParameter("user_email", email).getSingleResult();
+                System.out.println(user.toString());
+                if (user != null && user.getPass().equals(password)&& user.getType().equals("admin")) {
+                    System.out.println("Check sussess");
+                        return user;
+                }
+
+                transaction.commit();
+        }
+        return null;
+    }
 
     public static Users existUser(String email) {
         Transaction transaction = null;

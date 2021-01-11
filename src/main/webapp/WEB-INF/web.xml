@@ -68,6 +68,14 @@
         <servlet-name>ResetPassword</servlet-name>
         <servlet-class>Controller.ResetPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loginAdmin</servlet-name>
+        <servlet-class>Controller.loginAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginAdmin</servlet-name>
+        <servlet-class>Controller.LoginAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -136,6 +144,14 @@
     <servlet-mapping>
         <servlet-name>ResetPassword</servlet-name>
         <url-pattern>/ResetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginAdmin</servlet-name>
+        <url-pattern>/loginAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginAdmin</servlet-name>
+        <url-pattern>/LoginAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
