@@ -7,12 +7,16 @@ package Controller.todo;
 
 import DAO.TodoDAO;
 import Model.Todo;
+import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,9 +36,18 @@ public class DeleteTodo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        Users user = (Users)session.getAttribute("user");
         int todoid = Integer.parseInt(request.getParameter("todoid"));
+        String date = request.getParameter("date_todo");
+        request.setAttribute("date_todo_send", date);
+        if (date != null){
+            List<Todo> listofTodos = TodoDAO.getAllTodosbydate(user.getUserid(), date);
+            request.setAttribute("listofTodos", listofTodos);
+        } 
         TodoDAO.deleteTodo(todoid);
-        response.sendRedirect(request.getContextPath() + "/todo.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/todo.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

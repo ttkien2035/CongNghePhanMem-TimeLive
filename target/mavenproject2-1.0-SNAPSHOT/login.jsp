@@ -24,7 +24,12 @@
                             <i class="fas fa-user"></i>
                             <input type="text" name="email_login" placeholder="Username" />
                         </div>
-           
+                        <% 
+                        String err_login = (String)request.getAttribute("error_login"); 
+                        System.out.println(err_login);
+                        if (err_login == null ) err_login="" ;
+                        %>
+                        <span style="color: red"><%= err_login %></span>
                         <!---->
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
@@ -34,7 +39,7 @@
                         
                         <!---->
                         <input type="submit" value="Login" class="btn solid" />
-                        <input type="button"  class="btn solid" value="Forget Password"/>
+                        <input onclick="window.location.href='reset-password.jsp'" type="button"  class="btn solid" value="Forget Password"/>
                         <p class="social-text">Or Sign in with social platforms</p>
                         <!---->
                         <div class="social-media">

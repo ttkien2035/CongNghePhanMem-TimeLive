@@ -177,6 +177,24 @@ label{
 .external-event.middle{
     color: #ffffff;
 }
+.date-todo{
+    margin-left: 40px;
+    color: black;
+    font-size: 20px;
+    outline: darkgray;
+    border: solid 1px;
+}
+.btn-date-todo{
+    margin-left: 30px;
+    border: solid 2px #239847;
+    border-radius: 15px;
+    font-size: 20px;
+    color: black;
+    padding: 5px 5px 5px 5px
+}
+.card-header{
+    display: -webkit-box;
+}
 /* End CSS for task List View */
 
 /* CSS for Category List View */
@@ -210,8 +228,26 @@ label{
 }
 /* End CSS for Category List View */
 
-
-
+.group-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.card-info{
+    height: 220px;
+    width: 180px;
+    background-color: #CCEBDC;
+    padding: 20px 10px;
+    align-items: center;
+    text-align: center;
+    margin: 30px 10px;
+    border-radius: 30px;
+}
+.card-info img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
 /*  CSS for Deadline Upcoming  */
 
 .deadline-upcoming-list-view{
@@ -226,11 +262,24 @@ label{
     .category-list-view{
         display: grid;
         grid-template-columns: 1fr 1fr;
+        
+    }
+    .group-card{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 }
 @media screen and (max-width : 420px){
     /* dành cho điện thoại và các màn hình nhỏ */
     .category-list-view{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .card-header{
+        display: flex;
+        flex-direction: column;
+    }
+    .group-card{
         display: grid;
         grid-template-columns: 1fr;
     }
