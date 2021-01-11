@@ -77,7 +77,7 @@ public class UserDAO {
 
     public static void resetPassword(String email, String password) {
         Transaction transaction = null;
-        String query = "update User set pass = :password where email = :email";
+        String query = "update Users set pass = :password where email = :email";
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 

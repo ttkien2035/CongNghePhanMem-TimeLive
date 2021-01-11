@@ -60,6 +60,14 @@
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>Controller.DeleteUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetPassConfirm</servlet-name>
+        <servlet-class>Controller.ResetPassConfirm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>Controller.ResetPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -120,6 +128,14 @@
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/DeleteUser</url-pattern>
         <url-pattern>/adminpage/DeleteUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassConfirm</servlet-name>
+        <url-pattern>/ResetPassConfirm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/ResetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
