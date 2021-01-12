@@ -80,6 +80,18 @@
         <servlet-name>UpdateUser</servlet-name>
         <servlet-class>Controller.UpdateUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUpAdmin</servlet-name>
+        <servlet-class>Controller.SignUpAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetAdmin</servlet-name>
+        <servlet-class>Controller.SetAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetAdminU</servlet-name>
+        <servlet-class>Controller.SetAdminU</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -160,6 +172,18 @@
     <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/UpdateUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpAdmin</servlet-name>
+        <url-pattern>/SignUpAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetAdmin</servlet-name>
+        <url-pattern>/SetAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetAdminU</servlet-name>
+        <url-pattern>/adminpage/SetAdminU</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

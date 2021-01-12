@@ -11,6 +11,7 @@
 <%
     int soTask = TaskDAO.SoTask();
     int soTodo = TodoDAO.getTotalTodo();
+    int soUsers=UserDAO.getTotalUsers();
 
 
 
@@ -108,9 +109,9 @@
                     <div class="group-card">
                         <div class="card-info">
                             <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-                            <h3>30</h3>
+                            <h3><%= soUsers %></h3>
                             <h4>User</h4>
-                            <button class="btn-add-todo-category">View</button>
+                            <button class="btn-add-todo-category" onclick="location.href ='manage-user.jsp';">View</button>
                         </div>
                         <div class="card-info">
                             <img src="https://to-do-cdn.microsoft.com/static-assets/c87265a87f887380a04cf21925a56539b29364b51ae53e089c3ee2b2180148c6/icons/logo.png">

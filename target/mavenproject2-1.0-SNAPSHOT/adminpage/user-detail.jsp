@@ -106,6 +106,10 @@
         <div class="container-fluid">
             <h2>TIME LIVE</h2>
             <h2><b>User Info</b></h2>
+            <form method="post" action="SetAdminU">
+                <input type="text" name="id" value="<%=id %>">
+                <input type="submit" value="Set Admin" >
+            </form>
             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
                 <h5>Name : <%=u.getFullname()             %></h5>
                 <h5>Sex : <%=u.returnGen()             %></h5>
