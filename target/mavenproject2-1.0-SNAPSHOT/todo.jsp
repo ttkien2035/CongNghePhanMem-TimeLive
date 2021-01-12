@@ -110,7 +110,7 @@
                   <span>Extra</span>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="account.jsp">
                     <i class="fa fa-book"></i>
                     <span>Account</span>
                     <span class="badge badge-pill badge-primary">Beta</span>
