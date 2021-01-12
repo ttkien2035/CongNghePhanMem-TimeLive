@@ -112,6 +112,10 @@
                 <h5>Email : <%=u.getEmail()         %></h5>
                 <h5>Birthday : <%=u.getBirthdate()             %></h5>
             </article>
+            <form method="post" action="SetAdminU">
+                <input type="hidden" name="id" value="<%=id %>">
+                <input type="submit" value="Set Admin" >
+            </form>
             <h2><b>User Todo List</b></h2>
             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
                 <%

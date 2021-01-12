@@ -130,8 +130,8 @@
             <main class="page-content">
                 <div class="container-fluid">
                     <h2>TIME LIVE</h2>
-                    <h2><b>Task Info</b></h2>
-                    <h5>Total Task : <%= soTodo  %></h5>
+                    <h2><b>Todo Info</b></h2>
+                    <h5>Total Todo : <%= soTodo  %></h5>
                     <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
                         <h5>List of Todo</h5>
                         <div class="card todo-block container" id="mytask">   

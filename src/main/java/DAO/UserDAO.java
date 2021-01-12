@@ -17,6 +17,36 @@ import org.hibernate.cfg.Configuration;
  * @author ASUS
  */
 public class UserDAO {
+    public static int getTotalUsers(){
+        Transaction transaction = null;
+        List < Users > listOfUsersList = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load all Users");
+            String qr="from Users ";
+            listOfUsersList = session.createQuery(qr).getResultList();
+            System.out.println(listOfUsersList.size());
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        if(listOfUsersList==null){
+            return 0;
+        }
+        else{
+            return listOfUsersList.size();
+        }
+    }
     public static void saveUser(Users user) {
         Transaction transaction = null;
 
