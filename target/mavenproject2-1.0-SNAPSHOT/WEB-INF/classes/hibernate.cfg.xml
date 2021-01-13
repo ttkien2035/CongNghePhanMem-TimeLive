@@ -6,7 +6,7 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/timelive?UseUnicode=true&amp;characterEncoding=utf-8</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">ttkien2035</property>
+    <property name="hibernate.connection.password">kunpro2000@@</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <property name="hibernate.connection.release_mode">after_transaction</property>
     <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>

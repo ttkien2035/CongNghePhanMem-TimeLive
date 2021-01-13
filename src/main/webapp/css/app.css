@@ -256,7 +256,36 @@ label{
 }
 
 /* End CSS for Deadline Upcoming  */
-
+.group-routine{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    border-radius: 20px;
+    background: #2222;
+    padding-left: 5px;
+}
+.group-routine:hover{
+    transform: scale(1.25);
+    cursor: pointer;
+}
+.routine-list{
+    max-height: 266px;
+    overflow: scroll;
+}
+.btn-add-routine{
+    border: 2px dashed #1a1a1a;
+    border-radius: 20px;
+}
+.routine-detail-list{
+    max-height: 266px;
+    overflow: scroll;
+    border: solid 2px #484848;
+}
+.group-routine-detail{
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr;
+    align-items: center;
+}
 /*  RESPONSIVE */
 @media screen and (max-width : 980px){
     .category-list-view{
