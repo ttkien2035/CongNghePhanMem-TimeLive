@@ -74,6 +74,12 @@
           </div>
           <div class="sidebar-menu">
             <ul>
+                <li class="sidebar-dropdown">
+                  <a href="index.jsp">
+                    <i class="fa fa fa-tachometer"></i>
+                    <span>Home</span>
+                  </a>
+                </li>
                 <li class="header-menu">
                   <span>General</span>
                 </li>
@@ -109,6 +115,22 @@
                     <span>Statistic</span>
                   </a>
 
+                </li>
+                <li class="header-menu">
+                  <span>Extra</span>
+                </li>
+                <li>
+                  <a href="account.jsp">
+                    <i class="fa fa-book"></i>
+                    <span>Account</span>
+                    <span class="badge badge-pill badge-primary">Beta</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-calendar"></i>
+                    <span>Calendar</span>
+                  </a>
                 </li>
                 
             </ul>

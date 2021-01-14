@@ -70,6 +70,12 @@
           </div>
           <div class="sidebar-menu">
             <ul>
+                <li class="sidebar-dropdown">
+                  <a href="index.jsp">
+                    <i class="fa fa fa-tachometer"></i>
+                    <span>Home</span>
+                  </a>
+                </li>
                 <li class="header-menu">
                   <span>General</span>
                 </li>
@@ -110,7 +116,7 @@
                   <span>Extra</span>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="account.jsp">
                     <i class="fa fa-book"></i>
                     <span>Account</span>
                     <span class="badge badge-pill badge-primary">Beta</span>

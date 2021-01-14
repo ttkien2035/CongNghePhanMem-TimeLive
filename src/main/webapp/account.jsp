@@ -77,6 +77,12 @@
                 </div>
                 <div class="sidebar-menu">
                   <ul>
+                            <li class="sidebar-dropdown">
+                        <a href="index.jsp">
+                          <i class="fa fa fa-tachometer"></i>
+                          <span>Home</span>
+                        </a>
+                      </li>
                       <li class="header-menu">
                         <span>General</span>
                       </li>
