@@ -12,7 +12,8 @@
     int soTask = TaskDAO.SoTask();
     int soTodo = TodoDAO.getTotalTodo();
     int soUsers=UserDAO.getTotalUsers();
-
+    int soRoutine = RoutineDAO.getTotalRoutine();
+    int soActivity = ActivityDAO.getTotalActivity();
 
 
 
@@ -127,15 +128,15 @@
                         </div>
                         <div class="card-info">
                             <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-                            <h3>3000</h3>
-                            <h4>Tag</h4>
-                            <button class="btn-add-todo-category">View</button>
+                            <h3><%= soActivity %></h3>
+                            <h4>Activity</h4>
+                            <button class="btn-add-todo-category" onclick="location.href ='admin-activity.jsp';">View</button>
                         </div><!-- comment -->
                         <div class="card-info">
                             <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-                            <h3>123</h3>
+                            <h3><%= soRoutine %></h3>
                             <h4>Routine</h4>
-                            <button class="btn-add-todo-category">View</button>
+                            <button class="btn-add-todo-category" onclick="location.href ='admin-routine.jsp';">View</button>
                         </div>
                     </div>
                 </div>

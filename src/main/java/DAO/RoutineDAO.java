@@ -17,6 +17,61 @@ import org.hibernate.Transaction;
  * @author ASUS
  */
 public class RoutineDAO {
+    public static int getTotalRoutine(){
+        Transaction transaction = null;
+        List < Routines > listOfRoutinesList = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load all Routine");
+            String qr="from Routines ";
+            listOfRoutinesList = session.createQuery(qr).getResultList();
+            System.out.println(listOfRoutinesList.size());
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        if(listOfRoutinesList==null){
+            return 0;
+        }
+        else{
+            return listOfRoutinesList.size();
+        }
+    }
+    public static List< Routines > getAllRoutine(){
+        Transaction transaction = null;
+        List < Routines > listOfRoutinesList = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try  {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            System.out.println("Start load all Todo");
+            String qr="from Routines ";
+            listOfRoutinesList = session.createQuery(qr).getResultList();
+            System.out.println(listOfRoutinesList.size());
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        return listOfRoutinesList;
+    }
     public static List<Routines> getAllRoutineses(int id) {
 		Transaction transaction = null;
 		List<Routines> listOfrt = null;
