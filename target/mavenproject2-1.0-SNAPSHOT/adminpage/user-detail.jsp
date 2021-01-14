@@ -204,14 +204,37 @@
                         </table>
                     </div>
             </article>
-            <h2><b>User Routine List</b></h2>
-             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
-                <h5>Điền thông tin vào</h5>
+            <h2><b>User Task List</b></h2>
+            <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
+                <%
+                    List<Routines> listofRT1 = RoutineDAO.getAllRoutineses(u.getUserid());                
+                %>
+                <h5>All Routine: <%= listofRT1.size() %> </h5>
+                <div class="card todo-block container" id="mytask">
+                    <table id="mytodo-table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name of Routine</th>
+                            
+                        </tr>
+                        <%
+                            for(int i=0;i<listofRT1.size();i++){
+                                Routines x = listofRT1.get(i);
+                        %>
+                        <tr>
+                            <td><%= x.getRid()   %></td>
+                            <td><%= x.getRname()   %></td>
+                            
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
+                </div>
+                
+                
             </article>
-            <h2><b>User Statistic</b></h2>
-             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
-                <h5>Điền thông tin vào</h5>
-            </article>
+           
             
         </div>
     </main>
