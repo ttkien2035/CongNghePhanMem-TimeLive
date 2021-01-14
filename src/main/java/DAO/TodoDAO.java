@@ -13,6 +13,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -94,9 +102,9 @@ public class TodoDAO {
         }
         return td;
     }
-    
-  
-    
+
+
+
     public static void saveTodo(Todo todo) {
         Transaction transaction = null;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -118,7 +126,7 @@ public class TodoDAO {
             session.close();
         }
     }
-    
+
     public static List < Todo > getAllTodos(int userid) {
 
         Transaction transaction = null;
@@ -206,10 +214,10 @@ public class TodoDAO {
             }
         }
     }
-    
-    
-    
-    
+
+
+
+
     public static List < Tag > getAllTags(int userid) {
 
         Transaction transaction = null;
@@ -235,6 +243,109 @@ public class TodoDAO {
             session.close();
         }
         return listOfTags;
+    }
+
+
+    public List<Object[]> statisticTodoGroupByTag(Users user, Date date){
+        List<Object[]> resultList = null;
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        try {
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+            Root<Todo> root = criteriaQuery.from(Todo.class);
+            criteriaQuery.multiselect(root.get("tag"),builder.count(root.get("tag")));
+            criteriaQuery.groupBy(root.get("tag"));
+
+            System.out.println(date.toString());
+            System.out.println(user.getFullname());
+
+            Predicate eqUser = builder.equal(root.get("users"), user);
+            Predicate eqDate = builder.equal(root.get("datetodo"), date);
+
+            criteriaQuery.where(builder.and(eqUser, eqDate));
+            Query<Object[]> query = session.createQuery(criteriaQuery);
+            System.out.println(user.getFullname());
+
+            resultList = query.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return resultList;
+    }
+
+    public List<Object[]> statisticTodoDone(Users user, Date date){
+        List<Object[]> resultList = null;
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        try {
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+            Root<Todo> root = criteriaQuery.from(Todo.class);
+            criteriaQuery.multiselect(root.get("done"),builder.count(root.get("done")));
+            criteriaQuery.groupBy(root.get("done"));
+
+            Predicate eqUser = builder.equal(root.get("users"), user);
+            Predicate eqDate = builder.equal(root.get("datetodo"), date);
+
+            criteriaQuery.where(builder.and(eqUser, eqDate));
+
+            Query<Object[]> query = session.createQuery(criteriaQuery);
+
+            resultList = query.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return resultList;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Object[]> statisticWeekly(Users user, Date dbegin, Date dend) {
+        Transaction transaction = null;
+        List<Object[]> listResult = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        String query = "select datetodo, done, count(done) from Todo where users=:user and datetodo >= :dbegin and datetodo <= :dend group by datetodo, done";
+        try {
+            transaction = session.beginTransaction();
+
+            Query<Object[]> queryObj = session.createQuery(query).setParameter("user", user)
+                    .setParameter("dbegin", dbegin)
+                    .setParameter("dend", dend);
+            /*
+             * listResult = session.createSQLQuery(query) .setParameter("user", user)
+             * .setParameter("dbegin", dbegin) .setParameter("dend", dend) .getResultList();
+             */
+
+            listResult = queryObj.getResultList();
+
+            System.out.println("__________________________________________________");
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        System.out.println(listResult);
+        return listResult;
     }
     
 }

@@ -3,6 +3,7 @@
     Created on : Dec 17, 2020, 12:34:03 AM
     Author     : ASUS
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -100,7 +101,7 @@
                   </a>
                 </li>
                 <li class="sidebar-dropdown">
-                  <a href="statistic.jsp">
+                  <a href="${pageContext.request.contextPath}/StatisticDaily">
                     <i class="fa fa-chart-line"></i>
                     <span>Statistic</span>
                   </a>
@@ -178,7 +179,7 @@
                                 List<Todo> listofTodos = null;
                                 listofTodos = (List<Todo>)request.getAttribute("listofTodos");
                                 if(listofTodos==null){
-                                    listofTodos = TodoDAO.getAllTodosbydate(user.getUserid(), datetodo);
+                                    listofTodos = TodoDAO.getAllTodosbydate(user, datetodo);
                                 }
                                 if (listofTodos == null){%>
                                 <span>Không có todo nào cho hôm nay</span>
@@ -296,7 +297,7 @@
                                     </div>
                                     <select class="form-control" id="todo-tag-add" name="todo-tag-add">
                                         <%
-                                        List<Tag> listofTags = TodoDAO.getAllTags(user.getUserid());
+                                        List<Tag> listofTags = TodoDAO.getAllTags(user);
                                          for(int i=0;i<listofTags.size();i++)
                                          {
                                         %>
