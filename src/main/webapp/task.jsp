@@ -33,11 +33,16 @@
     if(user == null ){ %>
     <jsp:forward page="login.jsp"/>
     <% }
-    String a = user.getEmail();
     List<Tag> listofTags = TodoDAO.getAllTags(user.getUserid());
+    String msg=(String)request.getAttribute("msg");
+    if(msg!=null){%>
+    
+    <script> alert('<%=msg%>');</script>
+        <%
+    }
     %>
     <script>
-//        alert('<%=a%>');
+
     </script>
     <div class="page-wrapper chiller-theme toggled">
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -105,28 +110,7 @@
                   </a>
 
                 </li>
-                <li class="header-menu">
-                  <span>Extra</span>
-                </li>
-                <li>
-                  <a href="account.jsp">
-                    <i class="fa fa-book"></i>
-                    <span>Account</span>
-                    <span class="badge badge-pill badge-primary">Beta</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-calendar"></i>
-                    <span>Calendar</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-folder"></i>
-                    <span>Setting</span>
-                  </a>
-                </li>
+                
             </ul>
           </div>
           <!-- sidebar-menu  -->
@@ -254,7 +238,7 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form action="InsertTask" method="get">
+                            <form action="InsertTask" method="post">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task Name</span>
@@ -310,7 +294,7 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form action="EditTask" method="get">
+                            <form action="EditTask" method="post">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task Name</span>

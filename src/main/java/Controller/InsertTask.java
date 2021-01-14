@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,15 +45,23 @@ public class InsertTask extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        Users user = (Users)session.getAttribute("user");
-        String name = request.getParameter("task-name");
-        String tag = request.getParameter("task-tag");
-        Date dl = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("task-deadline"));
-        Tag mytag = TagDAO.getTag(Integer.parseInt(tag));
-        Task task = new Task(mytag,user,dl,false,name);
-        TaskDAO.saveTask(task);
-        response.sendRedirect(request.getContextPath() + "/task.jsp");
+        try{
+            HttpSession session = request.getSession();
+            Users user = (Users)session.getAttribute("user");
+            String name = request.getParameter("task-name");
+            String tag = request.getParameter("task-tag");
+            Date dl = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("task-deadline"));
+            Tag mytag = TagDAO.getTag(Integer.parseInt(tag));
+            Task task = new Task(mytag,user,dl,false,name);
+            TaskDAO.saveTask(task);
+            response.sendRedirect(request.getContextPath() + "/task.jsp");
+        }
+        catch(ParseException | NumberFormatException | IOException e){
+            request.setAttribute("msg", "Bạn chưa có tag , hãy tạo tag ở todo");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/task.jsp");
+            dispatcher.forward(request, response);
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
