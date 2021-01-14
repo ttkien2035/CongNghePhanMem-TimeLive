@@ -11,6 +11,7 @@ DAO\ActivityDAO.class
 Model\Todo.class
 Controller\DeleteUser.class
 Model\WeeklyId.class
+Controller\todo\EditTodo.class
 Controller\tag\InsertTag.class
 Controller\ResetPassword.class
 Controller\SignUpConfirm.class

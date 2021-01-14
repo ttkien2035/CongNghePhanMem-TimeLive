@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import DAO.TagDAO;
 import DAO.UserDAO;
+import Model.Tag;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,6 +43,9 @@ public class SignUpConfirm extends HttpServlet {
         {
             url="/signup-success.jsp";
             UserDAO.saveUser(a);
+            Tag tag = new Tag(a,"default","#FF7479");
+            TagDAO.saveTag(tag);
+            
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
             dispatcher.forward(request, response);
         }
