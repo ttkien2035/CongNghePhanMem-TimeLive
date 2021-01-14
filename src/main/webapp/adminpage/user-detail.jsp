@@ -204,7 +204,7 @@
                         </table>
                     </div>
             </article>
-            <h2><b>User Task List</b></h2>
+            <h2><b>User Routine List</b></h2>
             <article style="border:solid 1px black;padding-left: 3%;padding-right: 3%">
                 <%
                     List<Routines> listofRT1 = RoutineDAO.getAllRoutineses(u.getUserid());                
