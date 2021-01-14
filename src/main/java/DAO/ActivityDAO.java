@@ -18,6 +18,26 @@ import org.hibernate.Transaction;
  * @author ASUS
  */
 public class ActivityDAO {
+    
+    
+    public static List<Activity> getAllActis(int id) {
+		Transaction transaction = null;
+		List<Activity> listOfat = null;
+		System.out.println("load activity");
+		String query = "from Activity where userid = :user";
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			listOfat = session.createQuery(query).setParameter("user", id).getResultList();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listOfat;
+	}
     public static int getTotalActivity(){
         Transaction transaction = null;
         List < Activity > listOfActivitysList = null;
