@@ -11,7 +11,8 @@ function FillEditTagModal(tag,color,id){
         document.getElementById("tag-id-edit").value =id;
     }
     
-function FillEditTodoModal(des,prio,tag,date){
+function FillEditTodoModal(id,des,prio,tag,date){
+        document.getElementById("id-todo-edit").value =id;
         document.getElementById("todo-des-edit").value = des;
         document.getElementById("todo-prio-edit").value = prio;
         document.getElementById("todo-tag-edit").value =tag;

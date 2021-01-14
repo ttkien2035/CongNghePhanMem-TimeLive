@@ -161,11 +161,13 @@
                                         List<Routines> listofRoutineses = RoutineDAO.getAllRoutineses(user.getUserid());
                                         String rridString= (String)request.getAttribute("rid-resp");
                                         System.out.println(rridString + "    rrid");
-                                        int rid = listofRoutineses.get(0).getRid();
+                                        int rid=0;
+                                        if(listofRoutineses!=null && listofRoutineses.size()> 0){
+                                            rid = listofRoutineses.get(0).getRid();
+                                        }
                                         if(rridString!=null){
                                             rid=Integer.parseInt(rridString);
                                         }
-                                        System.out.println(rid+ "    rid");
                                         if(listofRoutineses!=null){
                                         for(int i=0;i<listofRoutineses.size();i++) {
                                     %>

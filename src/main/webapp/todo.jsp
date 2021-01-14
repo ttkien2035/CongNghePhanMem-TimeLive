@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="external-event middle" id="task-todo-des"><%= listofTodos.get(i).getDescript() %></div>
                                     <div><span class="badge badge-secondary middle" id="task-todo-prio"><%= listofTodos.get(i).getTag().getTag() %></span></div>
-                                    <button class="btn btn-hidden-bgr middle" id="todo-edit" onclick="FillEditTodoModal('<%= listofTodos.get(i).getDescript() %>','<%= listofTodos.get(i).getPrio() %>',<%= listofTodos.get(i).getTag().getTagid() %>,'<%= listofTodos.get(i).getDatetodo() %>')" data-toggle="modal" data-target="#edittodotask"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button class="btn btn-hidden-bgr middle" id="todo-edit" onclick="FillEditTodoModal('<%= listofTodos.get(i).getTodoid() %>','<%= listofTodos.get(i).getDescript() %>','<%= listofTodos.get(i).getPrio() %>',<%= listofTodos.get(i).getTag().getTagid() %>,'<%= listofTodos.get(i).getDatetodo() %>')" data-toggle="modal" data-target="#edittodotask"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                     <a href="DeleteTodo?todoid=<%= listofTodos.get(i).getTodoid() %>" class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></a>
                                 </div>
                                 <% } } %>
@@ -315,13 +315,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task</span>
                                     </div>
-                                    <input type="text" id="todo-des-add" name="todo-des-add" class="form-control">
+                                    <input type="text" id="todo-des-add" name="todo-des-add" data-val="true" data-val-required="The field is required." class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Priority</span>
                                     </div>
-                                    <input type="text" id="todo-prio-add" name="todo-prio-add" class="form-control">
+                                    <input type="text" id="todo-prio-add" name="todo-prio-add" data-val="true" data-val-required="The field is required." class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -375,7 +375,8 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form action="" method="get">
+                            <form action="EditTodo" method="get">
+                                <input type="hidden" name="id-todo-edit" id="id-todo-edit">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task</span>
