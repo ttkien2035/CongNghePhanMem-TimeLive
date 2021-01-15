@@ -1,0 +1,113 @@
+.statistic-daily-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.statistic-weekly-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterDailyStatistic, .filterWeeklyStatistic {
+    display: block;
+    padding: 8px;
+}
+
+.chart-daily-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chart-weekly-container {
+    width: 100%;
+}
+
+.input-form-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 8px;
+    align-items: center;
+    justify-content: left;
+    gap: 12px;
+}
+
+label.input-date-label, label.input-week-label {
+    margin: 0;
+    padding-left: 8px;
+    padding-bottom: 4px;
+    color: #00002A;
+}
+
+input[type=date] {
+    max-width: 240px;
+    padding: 8px 16px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    border: 1px #CFD4DD solid;
+
+    margin: 4px 0px;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/calendar.svg");
+}
+
+input[type=date]:focus {
+    border-color: #000000;
+}
+
+input[type=week] {
+    max-width: 240px;
+    padding: 8px 16px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    border: 1px #CFD4DD solid;
+
+    margin: 4px 0px;
+}
+
+input[type=week]::-webkit-calendar-picker-indicator {
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/calendar-week.svg");
+}
+
+input[type=week]:focus {
+    border-color: #000000;
+}
+
+
+input[type=submit].btn-submit {
+
+    background-color: #6B86F3;
+
+    padding: 8px 16px;
+
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+
+    border-radius: 8px;
+    outline: none;
+    border: none;
+}
+
+input[type=submit].btn-submit:hover {
+    background-color: #4CD7F6;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type=submit].btn-submit:focus {
+    background-color: #4CD7F6;
+    cursor: pointer;
+    outline: none;
+}
+

@@ -1,5 +1,5 @@
 package Model;
-// Generated Dec 16, 2020 9:59:07 PM by Hibernate Tools 4.3.1
+// Generated Jan 1, 2021 11:27:16 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,6 +31,7 @@ public class Task  implements java.io.Serializable {
      private Date deadline;
      private Boolean done;
      private Date doneat;
+     private String taskname;
 
     public Task() {
     }
@@ -39,12 +40,21 @@ public class Task  implements java.io.Serializable {
     public Task(Users users) {
         this.users = users;
     }
-    public Task(Tag tag, Users users, Date deadline, Boolean done, Date doneat) {
+    public Task(Tag tag, Users users, Date deadline, Boolean done, Date doneat, String taskname) {
        this.tag = tag;
        this.users = users;
        this.deadline = deadline;
        this.done = done;
        this.doneat = doneat;
+       this.taskname = taskname;
+    }
+
+    public Task(Tag tag, Users users, Date deadline, Boolean done, String taskname) {
+        this.tag = tag;
+        this.users = users;
+        this.deadline = deadline;
+        this.done = done;
+        this.taskname = taskname;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -109,9 +119,15 @@ public class Task  implements java.io.Serializable {
         this.doneat = doneat;
     }
 
-
-
-
+    
+    @Column(name="taskname", length=45)
+    public String getTaskname() {
+        return this.taskname;
+    }
+    
+    public void setTaskname(String taskname) {
+        this.taskname = taskname;
+    }
 }
 
 

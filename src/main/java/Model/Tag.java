@@ -37,7 +37,19 @@ public class Tag  implements java.io.Serializable {
     public Tag() {
     }
 
-	
+    public Tag(Integer tagid, String tag, String color) {
+        this.tagid = tagid;
+        this.tag = tag;
+        this.color = color;
+    }
+
+    public Tag(Integer tagid, Users users, String tag, String color) {
+        this.tagid = tagid;
+        this.users = users;
+        this.tag = tag;
+        this.color = color;
+    }
+    
     public Tag(Users users, String tag, String color) {
         this.users = users;
         this.tag = tag;

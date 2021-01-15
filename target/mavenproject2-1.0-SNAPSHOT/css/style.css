@@ -1,0 +1,321 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 24, 2020, 8:58:50 PM
+    Author     : KHOAPHAN
+*/
+.header {
+  /*--/top-hd--*/
+  /*--//top-hd--*/
+  /*---*/
+  /*--//nav--*/ }
+  .header .top-hd {
+    background: #252b33; 
+    padding-top: 20px;
+  }
+  .header a.sign-in {
+    background: #f30067;
+    display: inline-block;
+    padding: 10px 30px; 
+  }
+  .header .social-top li {
+    display: inline-block; 
+  }
+  .header .social-top li a {
+    font-size: 16px;
+    color: #fff;
+    margin-right: 10px; 
+  }
+  .header .social-top li a:hover {
+    color: #f30067; 
+  }
+  .header .social-top {
+    text-align: left; 
+  }
+  .header .social-top li a.sign-in:hover {
+    opacity: 0.9;
+    color: #fff; 
+  }
+  .header .accounts {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end; 
+  }
+  .header .top-head li {
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    margin: 0px 10px;
+    display: inline-block; 
+  }
+  .header .accounts li:nth-child(1) {
+    margin-left: 0; 
+  }
+  .header .top-head li span.fa {
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    margin-right: 10px; 
+  }
+  .header ul li {
+    display: inline-block; 
+    padding-right: 10px;
+  }
+  .header .accounts li span.fa {
+    margin-right: 10px; 
+  }
+  .header .accounts li {
+    display: inline-block;
+    margin: 0 30px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #fff; 
+  }
+  .header .accounts li a {
+    color: #fff; 
+  }
+  .header .accounts li a:hover {
+    opacity: 0.9; }
+  .header .accounts li:nth-child(3) {
+    margin-right: 0; }
+  @media (max-width: 1280px) {
+    .header .accounts li {
+      margin: 0 6px; } }
+  @media (max-width: 767px) {
+    .header .social-top, .header .accounts {
+      justify-content: space-around;
+      margin-bottom: 10px; } }
+  @media (max-width: 1080px) {
+    .header .accounts li {
+      margin: 0 6px; } }
+  @media (max-width: 600px) {
+    .header .accounts li {
+      font-size: 13px; }
+    .header .accounts li {
+      margin: 0px 2px; } }
+  @media (max-width: 440px) {
+    .header .accounts li {
+      margin: 0px 0px; }
+    .header li.top_li:nth-child(2) {
+      margin-left: 2px; } }
+
+/*Phần Slide*/
+.carousel-item {
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: saturate(0.85);
+}
+.carousel-caption {
+  bottom: 500px;
+}
+
+.carousel-caption h5 {
+  color : whitesmoke;
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  margin-bottom: 100px;
+}
+
+.carousel-caption p {
+  color: blanchedalmond;
+  width: 75%;
+  margin: auto;
+  font-size: 45px;
+  line-height: 1.9;
+  margin-bottom: 200px;
+}
+
+.navbar-light .navbar-brand {
+  color: #fff;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-toggler {
+  background: #fff;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .2rem 1rem;
+}
+
+.nav-link.active,.nav-link:focus{
+  color: #fff;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+/*Kết thúc phần css slide*/
+
+.fill{
+  background-color: #5ABCB9;
+}
+
+.about1{
+  background-color: #99a9bd;
+}
+
+.about2{
+  background-color: #d8a08e;
+}
+/*///////////////////////////////////*/
+.footer {
+  background: #303036;
+  color : #d3d3d3;
+  height : 400px;
+  position: relative;
+}
+
+.footer form{
+  display: block !important;
+}
+
+.footer .footer-content {
+  
+  height: 350px;
+  display: flex;
+}
+
+.footer .footer-content .footer-section{
+  flex: 1;
+  padding : 25px;
+
+}
+
+.footer .footer-content h1, .footer .footer-content h2 {
+  color : white;
+}
+
+.footer .footer-content .about h1 span{
+  color : blue;
+}
+
+.footer .footer-content .about .contact span {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  color : #d3d3d3
+}
+
+.footer .footer-content .about .contact a{
+  color : #d3d3d3;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.footer .footer-content .about .socials a{
+  border: 1px solid gray;
+  width : 45px;
+  height: 41px;
+  padding-top: 5px;
+  margin-right: 5px;
+  text-align: center;
+  display : inline-block;
+  font-size: 1.3em;
+  border-radius: 5px;
+  transition: all .3s;
+}
+
+.footer .footer-content .about .socials a:hover {
+  border: 1px solid white;
+  color: #be1f27;
+  transition: all .3s;
+}
+
+.footer .footer-content .links ul a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #d3d3d3;
+  transition: all .3s;
+}
+
+.footer .footer-content .links ul a:hover {
+  color:  white;
+  margin-left: 15px;
+  transition: all .3s;
+}
+
+.footer .footer-content .contact-form .contact-input{
+  background:  #272727;
+  color: #beddbd;
+  margin-bottom: 10px;
+  line-height: 1.5rem;
+  padding: .9rem 1.4rem;
+  border : none;
+  width: 100%;
+}
+
+.footer .footer-content .contact-form .contact-input:focus {
+  background: #1a1a1a;
+}
+
+.footer .footer-content .contact-form .btn-big{
+  padding: 0.7rem 1.3rem;
+  line-height: 1.3;
+  color: whitesmoke;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: rgb(23, 71, 30);
+  background: rgb(86, 48, 156);
+  float : right;
+}
+
+.footer .footer-content .contact-form .btn-big:hover{
+  color:  rgb(192, 46, 54);
+}
+
+.footer .footer-bottom{
+  background: #343a40;
+  color : #686868;
+  height : 50px;
+  width: 100%;
+  text-align:  center;
+  position : absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+

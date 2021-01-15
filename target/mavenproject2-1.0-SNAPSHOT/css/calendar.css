@@ -1,0 +1,135 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 22, 2020, 10:27:48 PM
+    Author     : ASUS
+*/
+
+.week-calendar {
+    width: max-content;
+    height: max-content;
+
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+}
+
+.week-container {
+    /* display: grid;
+    grid-template-columns: auto(7,auto); */
+
+    display: flex;
+    width: max-content;
+    height: max-content;
+    
+
+    background-color: #6b86f3;
+    padding-top: 12px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-bottom: 0px;
+
+    border-radius: 30px 30px 0px 0px;
+
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.week-container .day {
+
+    width: fit-content;
+    height: fit-content;
+
+    display: grid;
+    grid-row: auto(2, auto);
+    /* background-color: #98adff; */
+
+    padding-top: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+
+    /* border-bottom: 4px #6bf3ec solid; */
+
+    border-radius: 30px 30px 0px 0px;
+}
+
+div.today {
+    background-color: #98adff;
+    border-bottom: 4px #6bf3ec solid;
+}
+
+.day span:nth-child(even) {
+    margin-top: 4px;
+}
+
+.week-container .day span {
+    justify-self: center;
+    align-self: center;
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.datetime-container {
+    width: max-content;
+    display: flex;
+    /* background-color: white; */
+
+    /* border-radius: 0px 0px 30px 30px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); */
+    padding: 20px 12px;
+    color: #27275a;
+}
+
+div.time {
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    justify-self: center;
+    align-self: center;
+
+    padding: 12px 24px;
+    border-right: solid 1px #707070;
+}
+
+.datetime-container div.date {
+    display: grid;
+    grid-template-rows: auto(2, auto);
+    grid-template-columns: auto(2, auto);
+    grid-template-areas: 
+        "date month"
+        "date year";
+}
+span#date {
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 1em;
+    grid-area: date;
+    align-self: center;
+
+    padding: 0 24px;
+}
+
+span#month, span#year {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1em;
+    align-self: center;
+}
+
+span#month {
+    grid-area: month;
+    align-self: end;
+    padding-bottom: 4px;
+}
+
+span#year {
+    padding-top: 4px;
+    grid-area: year;
+    align-self: start;
+}

@@ -34,6 +34,7 @@ public class Users  implements java.io.Serializable {
      private String fullname;
      private Boolean gender;
      private Date birthdate;
+     private String type;
      private Set<Tag> tags = new HashSet<Tag>(0);
      private Set<Task> tasks = new HashSet<Task>(0);
      private Set<Routines> routineses = new HashSet<Routines>(0);
@@ -49,6 +50,16 @@ public class Users  implements java.io.Serializable {
         this.pass = pass;
         this.fullname = fullname;
     }
+
+    public Users(String email, String pass, String fullname, Boolean gender, Date birthdate) {
+        this.email = email;
+        this.pass = pass;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.type="user";
+    }
+    
     public Users(String email, String pass, String fullname, Boolean gender, Date birthdate, Set<Tag> tags, Set<Task> tasks, Set<Routines> routineses, Set<Todo> todos, Set<Weekly> weeklies) {
        this.email = email;
        this.pass = pass;
@@ -61,7 +72,19 @@ public class Users  implements java.io.Serializable {
        this.todos = todos;
        this.weeklies = weeklies;
     }
-   
+    public Users(String email, String pass, String fullname, Boolean gender, Date birthdate, String type, Set<Tag> tags, Set<Task> tasks, Set<Routines> routineses, Set<Todo> todos, Set<Weekly> weeklies) {
+       this.email = email;
+       this.pass = pass;
+       this.fullname = fullname;
+       this.gender = gender;
+       this.birthdate = birthdate;
+       this.type = type;
+       this.tags = tags;
+       this.tasks = tasks;
+       this.routineses = routineses;
+       this.todos = todos;
+       this.weeklies = weeklies;
+    }
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
@@ -123,7 +146,14 @@ public class Users  implements java.io.Serializable {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
-
+    @Column(name="type", length=45)
+    public String getType() {
+        return this.type;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
 @OneToMany(fetch=FetchType.LAZY, mappedBy="users")
     public Set<Tag> getTags() {
         return this.tags;
@@ -168,7 +198,16 @@ public class Users  implements java.io.Serializable {
     public void setWeeklies(Set<Weekly> weeklies) {
         this.weeklies = weeklies;
     }
-
+    
+    
+    public String returnGen()
+    {
+        if(this.gender==true)
+        {
+            return "Nam";
+        }
+        return "Nữ";
+    }
 
 
 

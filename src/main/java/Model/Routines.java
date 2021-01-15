@@ -34,7 +34,12 @@ public class Routines  implements java.io.Serializable {
     public Routines() {
     }
 
-	
+    public Routines(Users users, String rname,Integer rid) {
+        this.users = users;
+        this.rname = rname;
+        this.rid = rid;
+    }
+
     public Routines(Users users, String rname) {
         this.users = users;
         this.rname = rname;
@@ -96,7 +101,10 @@ public class Routines  implements java.io.Serializable {
         this.activities = activities;
     }
 
-
+    @Override
+    public String toString() {
+        return "Routines{" + "rid=" + rid  + ", rname=" + rname + '}';
+    }
 
 
 }

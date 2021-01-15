@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 16, 2020 10:02:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 1, 2021 11:27:17 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Model.Task" table="task" catalog="timelive" optimistic-lock="version">
         <id name="taskid" type="java.lang.Integer">
@@ -22,6 +22,9 @@
         </property>
         <property name="doneat" type="timestamp">
             <column name="doneat" length="19" />
+        </property>
+        <property name="taskname" type="string">
+            <column name="taskname" length="45" />
         </property>
     </class>
 </hibernate-mapping>

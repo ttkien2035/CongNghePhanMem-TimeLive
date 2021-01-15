@@ -3,7 +3,14 @@
     Created on : Dec 17, 2020, 12:34:03 AM
     Author     : ASUS
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
+<%@page import="Model.*"%>
+<%@page import="DAO.*"%>
 <%@page import="Hibernate.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,121 +19,133 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="style.css"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/app.css" rel="stylesheet" type="text/css"/>
         <link href="css/sidebar.css" rel="stylesheet" type="text/css"/>
-        <title>To do List</title>
+        <link href="css/calendar.css" rel="stylesheet" type="text/css"/>
+        <title>Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./fullcalendar/main.min.css">
-        <script src="./fullcalendar/main.min.js" defer></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/sidebar.js" type="text/javascript"></script>
+        <script src="js/todo.js" type="text/javascript"></script>
     </head>
-    <body>
-<div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture">
-        </div>
-        <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
-          </span>
-          <span class="user-role">Administrator</span>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-            <span>Online</span>
-          </span>
-        </div>
-      </div>
-      <div class="sidebar-menu">
-        <ul>
-            <li class="header-menu">
-              <span>General</span>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="dashboard.jsp">
-                <i class="fa fa fa-tachometer"></i>
-                <span>Dashboard</span>
-                <span class="badge badge-pill badge-warning">New</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="todo.jsp">
-                <i class="fa fa-pencil-square-o"></i>
-                <span>Todo</span>
-                <span class="badge badge-pill badge-danger">3</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="task.jsp">
-                <i class="fa fa-tasks"></i>
-                <span>Task</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="routine.jsp">
-                <i class="fa fa-repeat"></i>
-                <span>Routine</span>
-              </a>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="statistic">
-                <i class="fa fa-chart-line"></i>
-                <span>Statistic</span>
-              </a>
+    <body onload="initCalendar()">
+    <%
+    Users user = (Users)session.getAttribute("user");
+    if(user == null ){ %>
+    <jsp:forward page="login.jsp"/>
+    <% }
+    String a = user.getEmail();
+    %>
+    <div class="page-wrapper chiller-theme toggled">
+      <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+      </a>
+      <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+          <div class="sidebar-brand">
+            <a href="#">pro sidebar</a>
+            <div id="close-sidebar">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+          <div class="sidebar-header">
+            <div class="user-pic">
+              <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                alt="User picture">
+            </div>
+            <div class="user-info">
+              <span class="user-name">
+                <strong><%=user.getFullname()          %></strong>
+              </span>
+              <span class="user-role"><%=user.getEmail()            %></span>
+              <span class="user-status">
+                <i class="fa fa-circle"></i>
+                <span>Online</span>
+              </span>
+            </div>
+          </div>
+          <div class="sidebar-menu">
+            <ul>
+                <li class="sidebar-dropdown">
+                  <a href="index.jsp">
+                    <i class="fa fa fa-tachometer"></i>
+                    <span>Home</span>
+                  </a>
+                </li>
+                <li class="header-menu">
+                  <span>General</span>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="dashboard.jsp">
+                    <i class="fa fa fa-tachometer"></i>
+                    <span>Dashboard</span>
+                    <span class="badge badge-pill badge-warning">New</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="todo.jsp">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>Todo</span>
+                    <span class="badge badge-pill badge-danger">3</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="task.jsp">
+                    <i class="fa fa-tasks"></i>
+                    <span>Task</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="routine.jsp">
+                    <i class="fa fa-repeat"></i>
+                    <span>Routine</span>
+                  </a>
+                </li>
+                <li class="sidebar-dropdown">
+                  <a href="${pageContext.request.contextPath}/StatisticDaily">
+                    <i class="fa fa-chart-line"></i>
+                    <span>Statistic</span>
+                  </a>
 
-            </li>
-            <li class="header-menu">
-              <span>Extra</span>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Account</span>
-                <span class="badge badge-pill badge-primary">Beta</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span>Setting</span>
-              </a>
-            </li>
-        </ul>
-      </div>
-      <!-- sidebar-menu  -->
-    </div>
+                </li>
+                <li class="header-menu">
+                  <span>Extra</span>
+                </li>
+                <li>
+                  <a href="account.jsp">
+                    <i class="fa fa-book"></i>
+                    <span>Account</span>
+                    <span class="badge badge-pill badge-primary">Beta</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-calendar"></i>
+                    <span>Calendar</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-folder"></i>
+                    <span>Setting</span>
+                  </a>
+                </li>
+            </ul>
+          </div>
+          <!-- sidebar-menu  -->
+        </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
         <a>
             <i class="fa fa-cog"></i>
             <span class="badge-sonar"></span>
         </a>
-        <a href="#">
+        <a href="login.jsp">
             <i class="fa fa-power-off"></i>
         </a>
     </div>
@@ -142,74 +161,55 @@
                 <div class="mb-3 container">
                     <div class="card todo-block container">
                         <div class="card-header">
-                            <h4 class="card-title">Todo for Today</h4>
+                            <h4 class="card-title">Todo List </h4>
+                            <%
+                            String date = (String)request.getAttribute("date_todo_send");
+                            String datetodo;
+                            if (date != null){
+                            datetodo = date;
+                            }
+                            else{
+                                datetodo = String.valueOf(java.time.LocalDate.now());
+                            }
+                            
+                            %>
+                            <form action="SearchTodo" method="post">
+                                <input type="date" id="date_todo" class="date-todo" name="date_todo" value="<%= datetodo %>"> 
+                                <input type="submit" class="btn-date-todo" value="Load" >
+                            </form>
                         </div>
                         <div class="card-body">
                             <!-- the events -->
                             <div id="external-events">
-                                <form class="task-group mb-1" style="background-color:#aaaaaa;">
+                                <%
+                                List<Todo> listofTodos = null;
+                                listofTodos = (List<Todo>)request.getAttribute("listofTodos");
+                                if(listofTodos==null){
+                                    listofTodos = TodoDAO.getAllTodosbydate(user.getUserid(), datetodo);
+                                }
+                                if (listofTodos == null){%>
+                                <span>Không có todo nào cho hôm nay</span>
+                                <% }
+                                else{
+                                for (int i=0;i<listofTodos.size();i++)
+                                {
+                                %>
+                                <div class="task-group mb-1" style="background-color:<%= listofTodos.get(i).getTag().getColor()  %>; <% if(listofTodos.get(i).getDone()==true){ %> opacity:0.5;  <% } %> ">
+                                    <input type="hidden" id="task-todo-id" value="<%= listofTodos.get(i).getTodoid() %>">
                                     <div class="checkbox middle">
                                         <label >
-                                            <input type="checkbox" class="check">
+                                            <input type="checkbox" id="task-todo-check" class="check" <% if(listofTodos.get(i).getDone()==true){  %>checked<% } %> onclick="location.assign('UpdateStatusTodo?todo_id=<%= listofTodos.get(i).getTodoid() %>');" >
                                         </label>
                                     </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
-                                <form class="task-group mb-1">
-                                    <div class="checkbox middle">
-                                        <label >
-                                            <input type="checkbox" class="check">
-                                        </label>
-                                    </div>
-                                    <div class="external-event middle">Lunch</div>
-                                    <div><span class="badge badge-secondary middle">New</span></div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil-square-o" ></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-
-                                </form>
+                                    <div class="external-event middle" id="task-todo-des"><%= listofTodos.get(i).getDescript() %></div>
+                                    <div><span class="badge badge-secondary middle" id="task-todo-prio"><%= listofTodos.get(i).getTag().getTag() %></span></div>
+                                    <button class="btn btn-hidden-bgr middle" id="todo-edit" onclick="FillEditTodoModal('<%= listofTodos.get(i).getTodoid() %>','<%= listofTodos.get(i).getDescript() %>','<%= listofTodos.get(i).getPrio() %>',<%= listofTodos.get(i).getTag().getTagid() %>,'<%= listofTodos.get(i).getDatetodo() %>')" data-toggle="modal" data-target="#edittodotask"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <a href="DeleteTodo?todoid=<%= listofTodos.get(i).getTodoid() %>" class="btn btn-hidden-bgr middle" id="task-todo-delete"><i class="fa fa-trash" ></i></a>
+                                </div>
+                                <% } } %>
                             </div>
                             <div class="add-todo-task">
-                                <button type="button" class="btn btn-add-todo-task" data-toggle="modal" data-target="#addtodotask">
+                                <button type="button" class="btn btn-add-todo-task" id="btn-add-todo-task" data-toggle="modal" data-target="#addtodotask">
                                     Add New  <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -218,40 +218,96 @@
                     </div>
                 </div>
                 <!----------  End Todo List View ----------->
-                <!---------- DeadLine Upcoming ------------->
-                <div class="mb-3 container">
-                    <div class="card todo-block container">
-                        <div class="card-header">
-                            <h4 class="card-title">Deadline Upcoming</h4>
-                        </div>
-                        <div class="card-body">
-                            <!-- the events -->
-                            <div id="external-deadline-upcoming-events" class="deadline-upcoming-list-view">
-                                <div class="deadline-group">
-                                    <div class="external-deadline-upcoming-event">Lunch</div>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-hidden-bgr middle"><i class="fa fa-trash" ></i></i></button>
-                                </div>
-                                
+            <%
+
+                    List <Task> mytask = TaskDAO.getAllTasks(user.getUserid());
+                    %>
+                    <div  class="col-md-8">
+                        <div class="mb-6 container">
+                            <div class="card-header">
+                                <h4 class="card-title">My Current Task <button class="btn" id="mytask-refresh" ><i class="fa fa-repeat"></i></button></h4>
                             </div>
                             <div class="add-todo-task">
-                                <button type="button" class="btn btn-add-todo-task" data-toggle="modal" data-target="#addtodotask">
+                                <button type="button" class="btn btn-add-todo-task" id="btn-add-my-task" data-toggle="modal" data-target="#addmytask">
                                     Add New  <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
+                            <div class="card todo-block container" id="mytask">   
+                                <table id="mytask-table">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th style="display:none">Tag</th>
+                                        <th>Deadline</th>
+                                    </tr>
+                                    <%
+                                    for(int i=0;i<mytask.size();i++){
+                                        Task x = mytask.get(i);
+                                        String color = x.getTag().getColor();
+                                    %>
+                                    <tr style="background-color: <%=color%>">
+                                        <td><%=x.getTaskid()   %></td>
+                                        <td><%=x.getTaskname()   %></td>
+                                        <td style="display:none"><%=x.getTag().getTagid()%></td>
+                                        <td><%=TaskDAO.returnDate(x.getDeadline())  %></td>
+                                    </tr>   
+                                    <%   
+                                        }
+                                    %>
+                                </table>
+                            </div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                </div>
                 
-                
-                <!----------- End Deadline Upcoming----------------------------->
             </div>
             <div class="col-md-4">
-                sgdjfgjsdgfjsghfgjsgfsjhd
+                <div class="week-calendar sticky-top">
+                    <div class="week-container">
+                        <div class="day">
+                            <span id="sun">22</span>
+                            <span>SUN</span>
+                        </div>
+                        <div class="day">
+                            <span id="mon">20</span>
+                            <span>MON</span>
+                        </div>
+                        <div class="day">
+                            <span id="tue">21</span>
+                            <span>TUE</span>
+                        </div>
+                        <div class="day">
+                            <span id="wed">22</span>
+                            <span>WED</span>
+                        </div>
+                        <div class="day">
+                            <span id="thu">22</span>
+                            <span>THU</span>
+                        </div>
+                        <div class="day">
+                            <span id="fri">22</span>
+                            <span>FRI</span>
+                        </div>
+                        <div class="day">
+                            <span id="sat">22</span>
+                            <span>SAT</span>
+                        </div>
+                    </div>
+    
+                    <div class="datetime-container">
+                        <div class="time">
+                            <span id="hour">08</span>:
+                            <span id="min">00</span>
+                        </div>
+                        <div class="date">
+                            <span id="date">23</span>
+                            <span id="month">October</span>
+                            <span id="year">2020</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
+                          
         <!-- Modal add Todo Task -->
         <div class="modal" id="addtodotask">
             <div class="modal-dialog">
@@ -267,35 +323,41 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form>
+                            <form action="InsertTodo" method="get">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Task</span>
                                     </div>
-                                    <input type="text" id="task-des-add" class="form-control">
+                                    <input type="text" id="todo-des-add" name="todo-des-add" class="form-control">
                                 </div>
-                            </form>
-                            <form>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Priority</span>
+                                    </div>
+                                    <input type="text" id="todo-prio-add" name="todo-prio-add" class="form-control">
+                                </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Category</span>
                                     </div>
-                                    <input type="text" id="task-cate-add" class="form-control" list="categoryList">
-                                    <datalist id="categoryList">
-                                        <!-- <option value="Personal"></option>
-                                        <option value="Work"></option> -->
-                                    </datalist>
+                                    <select class="form-control" id="todo-tag-add" name="todo-tag-add">
+                                        <%
+                                        List<Tag> listofTags = TodoDAO.getAllTags(user.getUserid());
+                                         for(int i=0;i<listofTags.size();i++)
+                                         {
+                                        %>
+                                        <option value="<%= listofTags.get(i).getTagid() %>"><%= listofTags.get(i).getTag() %></option>
+                                        <% } %>
+                                    </select>
                                 </div>
-                            </form>
-                            <form>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Date</span>
                                     </div>
-                                    <input type="date" id="todo-date-add" class="form-control">
+                                    <input type="date" id="todo-date-add" name="todo-date-add" class="form-control" value="<%= datetodo %>"> 
                                 </div>
+                                <input type="submit" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block" value="Add">
                             </form>
-                            <button type="button" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block">Add</button>
                         </div>
                         <!---   End card add task   -->
                     </div>
@@ -310,6 +372,74 @@
         </div>
         <!---------- End modal add Todo task ---------->
         
+        
+        
+        <!-- Modal edit Todo Task -->
+        <div class="modal" id="edittodotask">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Todo</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!------ Start card add task ----->
+                        <div class= "card todo-block container mt-3">
+                            <form action="EditTodo" method="get">
+                                <input type="hidden" name="id-todo-edit" id="id-todo-edit">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Task</span>
+                                    </div>
+                                    <input type="text" id="todo-des-edit" name="todo-des-edit" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Priority</span>
+                                    </div>
+                                    <input type="text" id="todo-prio-edit" name="todo-prio-edit" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Category</span>
+                                    </div>
+                                    <select class="form-control" id="todo-tag-edit" name="todo-tag-edit">
+                                        <%
+                                         for(int i=0;i<listofTags.size();i++)
+                                         {
+                                        %>
+                                        <option value="<%= listofTags.get(i).getTagid() %>"><%= listofTags.get(i).getTag() %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Date</span>
+                                    </div>
+                                    <input type="date" id="todo-date-edit" name="todo-date-edit" class="form-control">
+                                </div>
+                                <input type="submit" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block" value="OK">
+                            </form>
+                        </div>
+                        <!---   End card add task   -->
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+       
+        
+        <!---------- End modal edit Todo task ---------->
     </div>
   </main>
   <!-- page-content" -->
@@ -320,7 +450,45 @@
 </body>
 </html>
 <script>
+    function updateCalendar() {
+            var now = new Date();
+            var day = now.getDay(),
+                mon = now.getMonth(),
+                date = now.getDate(),
+                year = now.getFullYear(),
+                hour = now.getHours(),
+                min = now.getMinutes();
+            
+            Number.prototype.pad = function(digits) {
+                for (var n= this.toString(); n.length < digits; n = 0 + n);
+                return n;
+            }
+            
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            var ids = ["hour", "min", "date", "month", "year"];
+            var values = [hour.pad(2), min.pad(2), date.pad(2) , months[mon], year];
+            for (var i = 0; i< ids.length; i++) {
+                document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+            }
 
+            var weekids = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+            var begin = date - day;
+            var dateInWeek = new Date();
+            
+            for (var i = 0; i < 7; i++) {
+                dateInWeek.setDate(begin + i );
+                document.getElementById(weekids[i]).firstChild.nodeValue = dateInWeek.getDate().pad(2);
+            }
+
+            document.getElementById(weekids[day]).parentElement.classList.add("today");
+
+        }
+
+    function initCalendar() {
+        updateCalendar();
+        window.setInterval("updateCalendar()", 1000);
+    }
     $(function(){
         $('.check').click(function(){
             var list = document.getElementsByClassName('task-group mb-1');

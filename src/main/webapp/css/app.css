@@ -174,6 +174,27 @@ label{
 .btn:hover{
     background-color: #99a9bd;
 }
+.external-event.middle{
+    color: #ffffff;
+}
+.date-todo{
+    margin-left: 40px;
+    color: black;
+    font-size: 20px;
+    outline: darkgray;
+    border: solid 1px;
+}
+.btn-date-todo{
+    margin-left: 30px;
+    border: solid 2px #239847;
+    border-radius: 15px;
+    font-size: 20px;
+    color: black;
+    padding: 5px 5px 5px 5px
+}
+.card-header{
+    display: -webkit-box;
+}
 /* End CSS for task List View */
 
 /* CSS for Category List View */
@@ -203,11 +224,30 @@ label{
 }
 .external-category-event{
     padding-left: 5px;
+    color: #ffffff;
 }
 /* End CSS for Category List View */
 
-
-
+.group-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.card-info{
+    height: 220px;
+    width: 180px;
+    background-color: #CCEBDC;
+    padding: 20px 10px;
+    align-items: center;
+    text-align: center;
+    margin: 30px 10px;
+    border-radius: 30px;
+}
+.card-info img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
 /*  CSS for Deadline Upcoming  */
 
 .deadline-upcoming-list-view{
@@ -216,10 +256,44 @@ label{
 }
 
 /* End CSS for Deadline Upcoming  */
-
+.group-routine{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    border-radius: 20px;
+    background: #2222;
+    padding-left: 5px;
+}
+.group-routine:hover{
+    transform: scale(1.25);
+    cursor: pointer;
+}
+.routine-list{
+    max-height: 266px;
+    overflow: scroll;
+}
+.btn-add-routine{
+    border: 2px dashed #1a1a1a;
+    border-radius: 20px;
+}
+.routine-detail-list{
+    max-height: 266px;
+    overflow: scroll;
+    border: solid 2px #484848;
+}
+.group-routine-detail{
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr;
+    align-items: center;
+}
 /*  RESPONSIVE */
 @media screen and (max-width : 980px){
     .category-list-view{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+    }
+    .group-card{
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
@@ -227,6 +301,14 @@ label{
 @media screen and (max-width : 420px){
     /* dành cho điện thoại và các màn hình nhỏ */
     .category-list-view{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .card-header{
+        display: flex;
+        flex-direction: column;
+    }
+    .group-card{
         display: grid;
         grid-template-columns: 1fr;
     }
