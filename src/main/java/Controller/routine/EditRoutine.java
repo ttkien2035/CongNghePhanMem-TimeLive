@@ -7,6 +7,7 @@ package Controller.routine;
 
 import DAO.RoutineDAO;
 import Model.Routines;
+import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,13 +34,16 @@ public class EditRoutine extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Users user = (Users)session.getAttribute("user");
         response.setContentType("text/html;charset=UTF-8");
         String desString=request.getParameter("routine-edit");
         int id = Integer.parseInt(request.getParameter("rt-id"));
-        Routines rt = RoutineDAO.getRoutine(id);
-        rt.setRname(desString);
-        System.out.println(rt.toString());
+        
+        Routines rt = new Routines(user,desString,id);
         RoutineDAO.updateRoutine(rt);
+        
+        
         RequestDispatcher dp=getServletContext().getRequestDispatcher("/routine.jsp");
         dp.forward(request, response);
     }

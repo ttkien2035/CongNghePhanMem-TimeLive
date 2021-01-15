@@ -374,15 +374,15 @@
                     <div class="modal-body">
                         <!------ Start card add task ----->
                         <div class= "card todo-block container mt-3">
-                            <form action="EditRoutine" method="get">
+                            <form action="EditRoutine" method="get">  
+                                <input type="hidden" name="rt-id" id="routine-edit-id">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Routine</span>
                                     </div>
-                                    <input type="text" id='routine-edit-frm' name="routine-edit" class="form-control">
-                                    <input type='hidden' name='rt-id' id='routine-edit-id'>
-                                </div>
-                                <input type="submit" id="btn-add-todo-task" class="btn btn-outline-info btn-lg btn-block" value="OK">
+                                    <input type="text" id='routine-edit-frm' name="routine-edit" class="form-control">                                  
+                                </div>                               
+                                <input type="submit" id="btn-add-activity-task" class="btn btn-outline-info btn-lg btn-block" value="OK">
                             </form>
                         </div>
                         <!---   End card add task   -->
