@@ -3,6 +3,7 @@
     Created on : Dec 17, 2020, 12:34:03 AM
     Author     : ASUS
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -106,7 +107,7 @@
                   </a>
                 </li>
                 <li class="sidebar-dropdown">
-                  <a href="statistic.jsp">
+                  <a href="${pageContext.request.contextPath}/StatisticDaily">
                     <i class="fa fa-chart-line"></i>
                     <span>Statistic</span>
                   </a>
@@ -217,7 +218,46 @@
                     </div>
                 </div>
                 <!----------  End Todo List View ----------->
+            <%
 
+                    List <Task> mytask = TaskDAO.getAllTasks(user.getUserid());
+                    %>
+                    <div  class="col-md-8">
+                        <div class="mb-6 container">
+                            <div class="card-header">
+                                <h4 class="card-title">My Current Task <button class="btn" id="mytask-refresh" ><i class="fa fa-repeat"></i></button></h4>
+                            </div>
+                            <div class="add-todo-task">
+                                <button type="button" class="btn btn-add-todo-task" id="btn-add-my-task" data-toggle="modal" data-target="#addmytask">
+                                    Add New  <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="card todo-block container" id="mytask">   
+                                <table id="mytask-table">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th style="display:none">Tag</th>
+                                        <th>Deadline</th>
+                                    </tr>
+                                    <%
+                                    for(int i=0;i<mytask.size();i++){
+                                        Task x = mytask.get(i);
+                                        String color = x.getTag().getColor();
+                                    %>
+                                    <tr style="background-color: <%=color%>">
+                                        <td><%=x.getTaskid()   %></td>
+                                        <td><%=x.getTaskname()   %></td>
+                                        <td style="display:none"><%=x.getTag().getTagid()%></td>
+                                        <td><%=TaskDAO.returnDate(x.getDeadline())  %></td>
+                                    </tr>   
+                                    <%   
+                                        }
+                                    %>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 
             </div>
             <div class="col-md-4">
