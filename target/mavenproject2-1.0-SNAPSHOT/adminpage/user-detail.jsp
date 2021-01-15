@@ -81,7 +81,7 @@
               </a>
             </li>
             <li class="sidebar-dropdown">
-              <a href="admin-statistic.jsp">
+              <a href="admin.jsp">
                 <i class="fa fa-chart-line"></i>
                 <span>Statistic</span>
               </a>

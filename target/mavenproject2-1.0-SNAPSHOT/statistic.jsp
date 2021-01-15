@@ -81,6 +81,12 @@
             </div>
             <div class="sidebar-menu">
                 <ul>
+                     <li class="sidebar-dropdown">
+                        <a href="index.jsp">
+                          <i class="fa fa fa-tachometer"></i>
+                          <span>Home</span>
+                        </a>
+                      </li>
                     <li class="header-menu">
                         <span>General</span>
                     </li>
@@ -149,7 +155,7 @@
                 <i class="fa fa-cog"></i>
                 <span class="badge-sonar"></span>
             </a>
-            <a href="#">
+            <a href="login.jsp">
                 <i class="fa fa-power-off"></i>
             </a>
         </div>
