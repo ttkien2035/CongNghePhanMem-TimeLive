@@ -14,6 +14,7 @@ Model\WeeklyId.class
 Controller\todo\EditTodo.class
 Controller\tag\InsertTag.class
 Controller\ResetPassword.class
+Controller\statistic\StatisticDaily.class
 Controller\SignUpConfirm.class
 Model\Task.class
 Controller\LoginAdmin.class
